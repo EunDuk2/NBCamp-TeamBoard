@@ -1,0 +1,24 @@
+PODS:
+  - FlexLayout (2.0.10)
+  - PinLayout (1.10.5)
+  - RxSwift (6.9.0)
+
+DEPENDENCIES:
+  - FlexLayout
+  - PinLayout
+  - RxSwift
+
+SPEC REPOS:
+  trunk:
+    - FlexLayout
+    - PinLayout
+    - RxSwift
+
+SPEC CHECKSUMS:
+  FlexLayout: ea94491c923485f7f28891cb5b10245d22df380b
+  PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+
+PODFILE CHECKSUM: 60395b0dc6ec6c0ba07e676a197ab4621899275f
+
+COCOAPODS: 1.16.2
