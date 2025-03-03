@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '13.0' # iOS 13.0 이상을 지원하도록 설정 (원하는 버전으로 변경 가능)
+
+target 'NBCamp-TeamBoard' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for NBCamp-TeamBoard
+  pod 'PinLayout'
+  pod 'FlexLayout'
+  pod 'RxSwift'
+
+end
