@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66E0D9182D76DFE500B7B156 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D9172D76DFE500B7B156 /* FlexLayout */; };
+		66E0D91B2D76E01200B7B156 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D91A2D76E01200B7B156 /* PinLayout */; };
 		A882424447D1D126BC76AC1F /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645B5EE1E88B77EDDA0EBB9D /* Pods_NBCamp_TeamBoard.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,7 +24,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E0D91B2D76E01200B7B156 /* PinLayout in Frameworks */,
 				A882424447D1D126BC76AC1F /* Pods_NBCamp_TeamBoard.framework in Frameworks */,
+				66E0D9182D76DFE500B7B156 /* FlexLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +114,10 @@
 			);
 			mainGroup = 618135272D757E000007B7A5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				66E0D9162D76DFE500B7B156 /* XCRemoteSwiftPackageReference "FlexLayout" */,
+				66E0D9192D76E01200B7B156 /* XCRemoteSwiftPackageReference "PinLayout" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 618135312D757E000007B7A5 /* Products */;
 			projectDirPath = "";
