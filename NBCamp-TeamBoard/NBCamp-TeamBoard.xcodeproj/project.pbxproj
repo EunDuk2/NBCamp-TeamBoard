@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		CCFCD4D0165A1C9BFB799FEF /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE262CC95AE8B7BFAE5D4C86 /* Pods_NBCamp_TeamBoard.framework */; };
 		E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514575B2D77EE010038C2E3 /* AddTeamCell.swift */; };
+		E56907C42D781C10005956A4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C32D781C10005956A4 /* MainViewModel.swift */; };
+		E56907C62D7832A7005956A4 /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */; };
+		E56907C82D7837B3005956A4 /* MemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C72D7837B3005956A4 /* MemberViewModel.swift */; };
+		E56907CA2D783B17005956A4 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C92D783B17005956A4 /* TeamViewModel.swift */; };
+		E56907CC2D783B7C005956A4 /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */; };
 		E5857D422D75819500520C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5857D3A2D75819500520C54 /* AppDelegate.swift */; };
 		E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5857D3F2D75819500520C54 /* SceneDelegate.swift */; };
 		E5857D452D75819500520C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5857D3B2D75819500520C54 /* Assets.xcassets */; };
@@ -18,10 +23,6 @@
 		E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */; };
 		E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E7E2D76DEF700900C13 /* AddMemberCell.swift */; };
 		E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E882D76E1D400900C13 /* CoreDataManager.swift */; };
-		E5E47E8E2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E8A2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift */; };
-		E5E47E8F2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E8C2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift */; };
-		E5E47E902D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E8B2D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift */; };
-		E5E47E912D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E8D2D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift */; };
 		E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E75E1E2D7596950009A2B1 /* MemberCell.swift */; };
 		E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E75E592D75E74A0009A2B1 /* TeamCell.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +33,11 @@
 		B043441DD66F71C8A82B08F3 /* Pods-NBCamp-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.debug.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		B80F77B613CB4F918D9F9ACF /* Pods-NBCamp-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.release.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
 		E514575B2D77EE010038C2E3 /* AddTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamCell.swift; sourceTree = "<group>"; };
+		E56907C32D781C10005956A4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
+		E56907C72D7837B3005956A4 /* MemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModel.swift; sourceTree = "<group>"; };
+		E56907C92D783B17005956A4 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
+		E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
 		E5857D3A2D75819500520C54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E5857D3B2D75819500520C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E5857D3C2D75819500520C54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,10 +48,6 @@
 		E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamData.xcdatamodel; sourceTree = "<group>"; };
 		E5E47E7E2D76DEF700900C13 /* AddMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberCell.swift; sourceTree = "<group>"; };
 		E5E47E882D76E1D400900C13 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		E5E47E8A2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemberEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E5E47E8B2D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MemberEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E5E47E8C2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E5E47E8D2D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E5E75E1E2D7596950009A2B1 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		E5E75E592D75E74A0009A2B1 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				E5857D482D75821500520C54 /* MainViewController.swift */,
+				E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */,
+				E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */,
 				E5E75E592D75E74A0009A2B1 /* TeamCell.swift */,
 				E5E75E1E2D7596950009A2B1 /* MemberCell.swift */,
 				E514575B2D77EE010038C2E3 /* AddTeamCell.swift */,
@@ -120,10 +124,6 @@
 		E5857D4E2D758B4F00520C54 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E5E47E8A2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift */,
-				E5E47E8B2D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift */,
-				E5E47E8C2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift */,
-				E5E47E8D2D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift */,
 				E5E47E882D76E1D400900C13 /* CoreDataManager.swift */,
 			);
 			path = Models;
@@ -132,6 +132,9 @@
 		E5857D4F2D758B4F00520C54 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E56907C32D781C10005956A4 /* MainViewModel.swift */,
+				E56907C92D783B17005956A4 /* TeamViewModel.swift */,
+				E56907C72D7837B3005956A4 /* MemberViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -260,20 +263,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E56907CA2D783B17005956A4 /* TeamViewModel.swift in Sources */,
 				E5857D492D75821500520C54 /* MainViewController.swift in Sources */,
 				E5857D422D75819500520C54 /* AppDelegate.swift in Sources */,
 				E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */,
+				E56907C62D7832A7005956A4 /* MemberDetailViewController.swift in Sources */,
+				E56907CC2D783B7C005956A4 /* TeamDetailViewController.swift in Sources */,
 				E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */,
 				E5B5F0062D7685960065BD3B /* TitleSupplementaryView.swift in Sources */,
 				E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */,
 				E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */,
 				E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */,
-				E5E47E8E2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift in Sources */,
-				E5E47E8F2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift in Sources */,
 				E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */,
-				E5E47E902D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift in Sources */,
-				E5E47E912D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift in Sources */,
 				E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */,
+				E56907C82D7837B3005956A4 /* MemberViewModel.swift in Sources */,
+				E56907C42D781C10005956A4 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
