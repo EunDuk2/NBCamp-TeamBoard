@@ -25,7 +25,7 @@ class TeamCell: UICollectionViewCell {
     
     private let teamNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 35, weight: .bold)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -34,12 +34,13 @@ class TeamCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //contentView.addSubview(imageView)
+        contentView.addSubview(imageView)
         contentView.addSubview(teamNameLabel)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         teamNameLabel.pin.left(20).bottom(20).sizeToFit()
         imageView.pin.all()
     }
@@ -48,14 +49,7 @@ class TeamCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with team: TeamEntity?) {
-        guard let team = team else {
-            imageView.image = nil
-            teamNameLabel.text = "팀을 추가해주세요."
-            teamNameLabel.pin.center().sizeToFit()
-            return
-        }
-        
+    func configure(with team: TeamEntity) {
         imageView.image = UIImage(named: "test.png")
         teamNameLabel.text = team.name
     }

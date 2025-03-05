@@ -15,6 +15,7 @@ class TitleSupplementaryView: UICollectionReusableView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "팀원 소개"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .black
         label.textAlignment = .left
@@ -23,11 +24,13 @@ class TitleSupplementaryView: UICollectionReusableView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addSubview(titleLabel)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         titleLabel.pin.all()
     }
     
@@ -35,7 +38,6 @@ class TitleSupplementaryView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 외부에서 제목을 설정할 메서드
     func configure(_ text: String) {
         titleLabel.text = text
     }

@@ -189,6 +189,7 @@
 				E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */,
 				E5E47E8E2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift in Sources */,
 				E5E47E8F2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift in Sources */,
+				E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */,
 				E5E47E902D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift in Sources */,
 				E5E47E912D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift in Sources */,
 				E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */,

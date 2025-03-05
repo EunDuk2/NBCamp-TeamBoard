@@ -1,42 +1,37 @@
 //
-//  MemberCell.swift
+//  AddTeamCell.swift
 //  NBCamp-TeamBoard
 //
-//  Created by 박주성 on 3/3/25.
+//  Created by 박주성 on 3/5/25.
 //
 
 import UIKit
-import FlexLayout
 import PinLayout
 
-class MemberCell: UICollectionViewCell {
+class AddTeamCell: UICollectionViewCell {
     
-    static let reuseIdentifier = "MemberCell"
+    static let reuseIdentifier = "AddTeamCell"
     
     private let rootContainerView = UIView()
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "test.jpg")
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    
-    private let nameLabel: UILabel = {
+    private let plusLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
+        label.text = "+"
+        label.textColor = .white
         return label
     }()
     
-    private let roleLabel: UILabel = {
+    private let addTeamTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .medium)
-        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 20, weight: .medium)
         label.textAlignment = .center
+        label.text = "팀을 추가해주세요"
+        label.textColor = .white
         return label
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,21 +55,15 @@ class MemberCell: UICollectionViewCell {
         rootContainerView.flex
             .direction(.column)
             .alignItems(.center)
+            .justifyContent(.center)
             .cornerRadius(12)
+            .backgroundColor(.lightGray)
             .border(1, .black)
             .define { flex in
-                flex.addItem(imageView)
-                    .width(100%)
-                    .aspectRatio(1)
-                flex.addItem(nameLabel)
+                flex.addItem(plusLabel)
+                flex.addItem(addTeamTitleLabel)
                     .marginTop(8)
-                flex.addItem(roleLabel)
-                    .marginTop(2)
             }
-    }
-    
-    func configure(with member: MemberEntity) {
-        nameLabel.text = member.name
-        roleLabel.text = member.role
+        
     }
 }

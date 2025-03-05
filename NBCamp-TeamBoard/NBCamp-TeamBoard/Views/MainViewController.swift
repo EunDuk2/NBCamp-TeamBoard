@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FlexLayout
 import PinLayout
 import CoreData
 
@@ -16,9 +15,10 @@ enum Section: Int, CaseIterable {
 }
 
 enum CellItem: Hashable {
-    case team(TeamEntity?)
+    case team(TeamEntity)
     case member(MemberEntity)
     case addMember
+    case addTeam
 }
 
 class MainViewController: UIViewController {
@@ -37,27 +37,19 @@ class MainViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        if CoreDataManager.shared.fetchTeams().isEmpty {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-                barButtonSystemItem: .add,
-                target: self,
-                action: #selector(addTeamButtonTapped)
-            )
-            self.navigationItem.rightBarButtonItem?.tintColor = .black
-        } else {
-            self.navigationItem.rightBarButtonItem = nil
-        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(resetButtonTapped)
+        )
     }
     
-    @objc private func addTeamButtonTapped() {
-        if CoreDataManager.shared.fetchTeams().isEmpty {
-            CoreDataManager.shared.addTeam()
-            self.navigationItem.rightBarButtonItem = nil
-            updateSnapshot()
-        }
+    @objc private func resetButtonTapped() {
+        CoreDataManager.shared.resetData()
+        updateSnapshot()
     }
     
-    // MARK: - 컬렉션뷰 설정 및 레이아웃
+    
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
         collectionView.backgroundColor = .clear
@@ -73,7 +65,7 @@ class MainViewController: UIViewController {
         collectionView.register(TeamCell.self, forCellWithReuseIdentifier: TeamCell.reuseIdentifier)
         collectionView.register(MemberCell.self, forCellWithReuseIdentifier: MemberCell.reuseIdentifier)
         collectionView.register(AddMemberCell.self, forCellWithReuseIdentifier: AddMemberCell.reuseIdentifier)
-        
+        collectionView.register(AddTeamCell.self, forCellWithReuseIdentifier: AddTeamCell.reuseIdentifier)
         collectionView.register(
             TitleSupplementaryView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -88,7 +80,7 @@ class MainViewController: UIViewController {
                     withReuseIdentifier: TeamCell.reuseIdentifier,
                     for: indexPath
                 ) as! TeamCell
-                cell.configure(with: teamItem)  // teamItem이 nil이면 팀이 없음을 의미
+                cell.configure(with: teamItem)
                 return cell
 
             case .member(let memberItem):
@@ -105,6 +97,13 @@ class MainViewController: UIViewController {
                     for: indexPath
                 ) as! AddMemberCell
                 return cell
+                
+            case .addTeam:
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: AddTeamCell.reuseIdentifier,
+                    for: indexPath
+                ) as! AddTeamCell
+                return cell
             }
         }
 
@@ -118,11 +117,6 @@ class MainViewController: UIViewController {
                     for: indexPath
                 ) as! TitleSupplementaryView
                 
-                if !CoreDataManager.shared.fetchTeams().isEmpty {
-                    headerView.configure("팀원 소개")
-                } else {
-                    headerView.configure("")
-                }
                 return headerView
             }
             return nil
@@ -178,20 +172,18 @@ class MainViewController: UIViewController {
         
         let teams = CoreDataManager.shared.fetchTeams()
         if teams.isEmpty {
-            // 팀이 없으면 team 섹션만 추가하고, 멤버 섹션은 추가하지 않음
             snapshot.appendSections([.team])
-            snapshot.appendItems([.team(nil)], toSection: .team)
+            snapshot.appendItems([.addTeam], toSection: .team)
         } else {
-            // 팀이 있으면 team, members 두 섹션 모두 추가
             snapshot.appendSections(Section.allCases)
             
             let teamItems = teams.map { CellItem.team($0) }
             snapshot.appendItems(teamItems, toSection: .team)
             
-            snapshot.appendItems([.addMember], toSection: .members)
             let members = CoreDataManager.shared.fetchMembers()
             let memberItems = members.map { CellItem.member($0) }
             snapshot.appendItems(memberItems, toSection: .members)
+            snapshot.appendItems([.addMember], toSection: .members)
         }
         
         datasource.apply(snapshot, animatingDifferences: true)
@@ -205,12 +197,15 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
         switch item {
-        case .team(let team):
-            break
-        case .member(let member):
-            print(member)
+        case .team:
+            print("팀 버튼")
+        case .member:
+            print("멤버 버튼")
         case .addMember:
             CoreDataManager.shared.addMember()
+            updateSnapshot()
+        case .addTeam:
+            CoreDataManager.shared.addTeam()
             updateSnapshot()
         }
         
