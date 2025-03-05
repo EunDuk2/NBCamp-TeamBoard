@@ -35,6 +35,14 @@ class ViewController: UIViewController {
         setLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let profileVC = TeamPartnerDetailView()
+        profileVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
     
     private func setUI() {
         view.addSubview(testLabel)
