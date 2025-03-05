@@ -17,27 +17,6 @@
 		645B5EE1E88B77EDDA0EBB9D /* Pods_NBCamp_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCamp_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		618135422D757E010007B7A5 /* Exceptions for "NBCamp-TeamBoard" folder in "NBCamp-TeamBoard" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 6181352F2D757E000007B7A5 /* NBCamp-TeamBoard */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		618135322D757E000007B7A5 /* NBCamp-TeamBoard */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				618135422D757E010007B7A5 /* Exceptions for "NBCamp-TeamBoard" folder in "NBCamp-TeamBoard" target */,
-			);
-			path = "NBCamp-TeamBoard";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		6181352D2D757E000007B7A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -62,7 +41,7 @@
 		618135272D757E000007B7A5 = {
 			isa = PBXGroup;
 			children = (
-				618135322D757E000007B7A5 /* NBCamp-TeamBoard */,
+				E5857D412D75819500520C54 /* NBCamp-TeamBoard */,
 				618135312D757E000007B7A5 /* Products */,
 				0E16FCCC9F2C616AEFDDEA46 /* Pods */,
 				EE732B9A9428602FC7DA125F /* Frameworks */,
@@ -101,9 +80,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				618135322D757E000007B7A5 /* NBCamp-TeamBoard */,
 			);
 			name = "NBCamp-TeamBoard";
 			productName = "NBCamp-TeamBoard";
@@ -149,6 +125,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5857D452D75819500520C54 /* Assets.xcassets in Resources */,
+				E5857D472D75819500520C54 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,10 +179,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5857D492D75821500520C54 /* MainViewController.swift in Sources */,
+				E5857D422D75819500520C54 /* AppDelegate.swift in Sources */,
+				E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */,
+				E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */,
+				E5B5F0062D7685960065BD3B /* TitleSupplementaryView.swift in Sources */,
+				E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */,
+				E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */,
+				E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */,
+				E5E47E8E2D76F6BE00900C13 /* MemberEntity+CoreDataClass.swift in Sources */,
+				E5E47E8F2D76F6BE00900C13 /* TeamEntity+CoreDataClass.swift in Sources */,
+				E5E47E902D76F6BE00900C13 /* MemberEntity+CoreDataProperties.swift in Sources */,
+				E5E47E912D76F6BE00900C13 /* TeamEntity+CoreDataProperties.swift in Sources */,
+				E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E5857D3E2D75819500520C54 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5857D3D2D75819500520C54 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		618135442D757E010007B7A5 /* Debug */ = {
@@ -222,6 +224,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -250,6 +253,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,7 +304,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -363,7 +367,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -404,6 +408,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */,
+			);
+			currentVersion = E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */;
+			path = TeamData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 618135282D757E000007B7A5 /* Project object */;
 }
