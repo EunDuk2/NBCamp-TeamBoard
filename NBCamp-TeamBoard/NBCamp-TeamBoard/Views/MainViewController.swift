@@ -17,27 +17,56 @@ enum Section: Int, CaseIterable {
 enum CellItem: Hashable {
     case team(TeamEntity)
     case member(MemberEntity)
-    case addMember
     case addTeam
+    case addMember
 }
 
 class MainViewController: UIViewController {
     
-    private var collectionView: UICollectionView!
+    // MARK: - UI Components
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
     private var datasource: UICollectionViewDiffableDataSource<Section, CellItem>!
     
+    // MARK: - ViewModel
+    private let viewModel = MainViewModel()
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "팀 소개"
-        self.view.backgroundColor = .white
-        
-        configureNavigationBar()
+        configureView()
         configureCollectionView()
-        updateSnapshot()
+        bindViewModel()
+        viewModel.fetchSnapshot()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchSnapshot()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        collectionView.pin
+            .top(view.pin.safeArea)
+            .horizontally()
+            .bottom()
+    }
+    
+    // MARK: - Configuration
+    private func configureView() {
+        title = "팀 소개"
+        view.backgroundColor = .white
+        configureNavigationBar()
     }
     
     private func configureNavigationBar() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .cancel,
             target: self,
             action: #selector(resetButtonTapped)
@@ -45,23 +74,17 @@ class MainViewController: UIViewController {
     }
     
     @objc private func resetButtonTapped() {
-        CoreDataManager.shared.resetData()
-        updateSnapshot()
+        viewModel.resetData()
     }
     
-    
     private func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
-        collectionView.backgroundColor = .clear
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        
         view.addSubview(collectionView)
-        collectionView.pin
-            .top(view.pin.safeArea)
-            .horizontally()
-            .bottom()
         
+        registerCells()
+        configureDatasource()
+    }
+    
+    private func registerCells() {
         collectionView.register(TeamCell.self, forCellWithReuseIdentifier: TeamCell.reuseIdentifier)
         collectionView.register(MemberCell.self, forCellWithReuseIdentifier: MemberCell.reuseIdentifier)
         collectionView.register(AddMemberCell.self, forCellWithReuseIdentifier: AddMemberCell.reuseIdentifier)
@@ -71,143 +94,136 @@ class MainViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: TitleSupplementaryView.reuseIdentifier
         )
-        
+    }
+    
+    private func configureDatasource() {
         datasource = UICollectionViewDiffableDataSource<Section, CellItem>(collectionView: collectionView)
         { collectionView, indexPath, item in
             switch item {
-            case .team(let teamItem):
+            case .team(let team):
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: TeamCell.reuseIdentifier,
                     for: indexPath
                 ) as! TeamCell
-                cell.configure(with: teamItem)
+                cell.configure(with: team)
                 return cell
-
-            case .member(let memberItem):
+                
+            case .member(let member):
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: MemberCell.reuseIdentifier,
                     for: indexPath
                 ) as! MemberCell
-                cell.configure(with: memberItem)
+                cell.configure(with: member)
                 return cell
-
-            case .addMember:
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: AddMemberCell.reuseIdentifier,
-                    for: indexPath
-                ) as! AddMemberCell
-                return cell
-                
+                                
             case .addTeam:
                 let cell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: AddTeamCell.reuseIdentifier,
                     for: indexPath
                 ) as! AddTeamCell
                 return cell
+                
+            case .addMember:
+                let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: AddMemberCell.reuseIdentifier,
+                    for: indexPath
+                ) as! AddMemberCell
+                return cell
             }
         }
-
         
         datasource.supplementaryViewProvider = { collectionView, kind, indexPath in
-            guard let section = Section(rawValue: indexPath.section) else { return nil }
-            if kind == UICollectionView.elementKindSectionHeader, section == .members {
-                let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: TitleSupplementaryView.reuseIdentifier,
-                    for: indexPath
-                ) as! TitleSupplementaryView
-                
-                return headerView
-            }
-            return nil
-        }
-    }
-    private func layout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
-            guard let section = Section(rawValue: sectionIndex) else { return nil }
-            switch section {
-            case .team:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
-                                                       heightDimension: .fractionalWidth(0.9))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                
-                let sectionLayout = NSCollectionLayoutSection(group: group)
-                sectionLayout.orthogonalScrollingBehavior = .groupPagingCentered
-                sectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0)
-                return sectionLayout
-                
-            case .members:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                      heightDimension: .fractionalHeight(1))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .fractionalWidth(0.65))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
-                group.interItemSpacing = .fixed(20)
-                
-                let sectionLayout = NSCollectionLayoutSection(group: group)
-                sectionLayout.interGroupSpacing = 40
-                sectionLayout.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 40, trailing: 20)
-                
-                let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .absolute(50))
-                let header = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: UICollectionView.elementKindSectionHeader,
-                    alignment: .top
-                )
-                sectionLayout.boundarySupplementaryItems = [header]
-                return sectionLayout
-            }
-        }
-    }
-    
-    private func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
-        
-        let teams = CoreDataManager.shared.fetchTeams()
-        if teams.isEmpty {
-            snapshot.appendSections([.team])
-            snapshot.appendItems([.addTeam], toSection: .team)
-        } else {
-            snapshot.appendSections(Section.allCases)
+            guard let section = Section(rawValue: indexPath.section),
+                  kind == UICollectionView.elementKindSectionHeader,
+                  section == .members else { return nil }
             
-            let teamItems = teams.map { CellItem.team($0) }
-            snapshot.appendItems(teamItems, toSection: .team)
-            
-            let members = CoreDataManager.shared.fetchMembers()
-            let memberItems = members.map { CellItem.member($0) }
-            snapshot.appendItems(memberItems, toSection: .members)
-            snapshot.appendItems([.addMember], toSection: .members)
+            let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: TitleSupplementaryView.reuseIdentifier,
+                for: indexPath
+            ) as! TitleSupplementaryView
+            return headerView
         }
-        
-        datasource.apply(snapshot, animatingDifferences: true)
     }
-
     
+    private func bindViewModel() {
+        viewModel.onSnapshotUpdated = { [weak self] snapshot in
+            self?.datasource.apply(snapshot)
+        }
+    }
     
+    // MARK: - Layout
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment -> NSCollectionLayoutSection? in
+            guard let self = self, let section = Section(rawValue: sectionIndex) else { return nil }
+            return section == .team ? self.teamSectionLayout() : self.membersSectionLayout()
+        }
+    }
+    
+    private func teamSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.9),
+            heightDimension: .fractionalWidth(0.9)
+        )
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0)
+        return section
+    }
+    
+    private func membersSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalWidth(0.65)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        group.interItemSpacing = .fixed(20)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 40
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 20, bottom: 40, trailing: 20)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(50)
+        )
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        section.boundarySupplementaryItems = [header]
+        return section
+    }
 }
 
+// MARK: - UICollectionViewDelegate
 extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
         switch item {
-        case .team:
-            print("팀 버튼")
-        case .member:
-            print("멤버 버튼")
-        case .addMember:
-            CoreDataManager.shared.addMember()
-            updateSnapshot()
+        case .team(let teamItem):
+            viewModel.selectTeam(teamItem, fromCurrentVC: self)
+        case .member(let memberItem):
+            viewModel.selectMember(memberItem, fromCurrentVC: self)
         case .addTeam:
-            CoreDataManager.shared.addTeam()
-            updateSnapshot()
+            viewModel.addTeam()
+        case .addMember:
+            viewModel.addMember()
         }
-        
     }
 }
