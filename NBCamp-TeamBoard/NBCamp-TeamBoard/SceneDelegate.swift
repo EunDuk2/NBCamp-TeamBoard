@@ -16,11 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        // 윈도우 생성
         let window = UIWindow(windowScene: windowScene)
-        let vc = ViewController()
-        window.rootViewController = vc
-        self.window = window
+        
+        // 네비게이션 컨트롤러 설정
+        let navController = UINavigationController(rootViewController: ViewController())
+        window.rootViewController = navController
+        
+        // 화면에 표시
         window.makeKeyAndVisible()
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
