@@ -1,0 +1,24 @@
+PODS:
+  - FlexLayout (2.1.0):
+    - Yoga
+  - PinLayout (1.10.5)
+  - Yoga (3.2.1)
+
+DEPENDENCIES:
+  - FlexLayout
+  - PinLayout
+
+SPEC REPOS:
+  trunk:
+    - FlexLayout
+    - PinLayout
+    - Yoga
+
+SPEC CHECKSUMS:
+  FlexLayout: bf58f5dd86c04d32c057542bb6540e328df73a94
+  PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
+  Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
+
+PODFILE CHECKSUM: 7731466bdc63c0a0e7c596a1674b342bbdf87745
+
+COCOAPODS: 1.16.2
