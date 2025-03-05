@@ -17,11 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
+        // 윈도우 생성
         let window = UIWindow(windowScene: windowScene)
         let vc = UINavigationController(rootViewController: MainViewController())
         window.rootViewController = vc
         self.window = window
-        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
