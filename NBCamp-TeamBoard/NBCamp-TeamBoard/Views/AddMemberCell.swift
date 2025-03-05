@@ -19,17 +19,23 @@ class AddMemberCell: UICollectionViewCell {
         label.textAlignment = .center
         label.text = "+"
         label.textColor = .black
+        label.clipsToBounds = true
+        label.layer.cornerRadius = 12
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 1
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         contentView.addSubview(plusLabel)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        plusLabel.frame = contentView.bounds
+        
+        plusLabel.pin.all()
     }
     
     required init?(coder: NSCoder) {

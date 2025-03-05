@@ -19,25 +19,24 @@ final class CoreDataManager {
         return appDelegate.persistentContainer.viewContext
     }()
     
-    // MARK: - Data Reset (테스트용)
+    
     func resetData() {
-        let teamRequest: NSFetchRequest<NSFetchRequestResult> = TeamEntity.fetchRequest()
-        let teamDeleteRequest = NSBatchDeleteRequest(fetchRequest: teamRequest)
-        
-        let memberRequest: NSFetchRequest<NSFetchRequestResult> = MemberEntity.fetchRequest()
-        let memberDeleteRequest = NSBatchDeleteRequest(fetchRequest: memberRequest)
-        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let entityNames = appDelegate.persistentContainer.managedObjectModel.entities.compactMap { $0.name }
+
         do {
-            try context.execute(teamDeleteRequest)
-            try context.execute(memberDeleteRequest)
+            for entityName in entityNames {
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                try context.execute(deleteRequest)
+            }
             try context.save()
-            print("데이터 초기화 완료")
+            print("Core Data 리셋")
         } catch {
-            print("데이터 리셋 실패: \(error.localizedDescription)")
+            print("Core Data 리셋 실패: \(error)")
         }
     }
     
-    // MARK: - Fetch Methods
     func fetchTeams() -> [TeamEntity] {
         let request: NSFetchRequest<TeamEntity> = TeamEntity.fetchRequest()
         
@@ -60,7 +59,6 @@ final class CoreDataManager {
         }
     }
     
-    // MARK: - Add Methods
     func addTeam() {
         let teams = fetchTeams()
         guard teams.isEmpty else { return }
