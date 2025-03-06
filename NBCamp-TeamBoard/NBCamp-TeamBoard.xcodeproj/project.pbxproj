@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1943DA3030B46048549FF567 /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37CCBD8F551931F8B5A8014A /* Pods_NBCamp_TeamBoard.framework */; };
-		66E0D9182D76DFE500B7B156 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D9172D76DFE500B7B156 /* FlexLayout */; };
-		66E0D91B2D76E01200B7B156 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D91A2D76E01200B7B156 /* PinLayout */; };
+		66E0D9182D76DFE500B7B156 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		66E0D91B2D76E01200B7B156 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		96ECC467A7EC35C059C54C7F /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB40B1A400969808F2FA55D /* Pods_NBCamp_TeamBoard.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		075FF64AD7E75C719C173D76 /* Pods-NBCamp-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.debug.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
-		37CCBD8F551931F8B5A8014A /* Pods_NBCamp_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCamp_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DB40B1A400969808F2FA55D /* Pods_NBCamp_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCamp_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C8ED3DE84C6D49A4101AC44 /* Pods-NBCamp-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.debug.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		618135302D757E000007B7A5 /* NBCamp-TeamBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NBCamp-TeamBoard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CDED2CD8D81DC3188D58040A /* Pods-NBCamp-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.release.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
+		A277292DB9105356D98D134B /* Pods-NBCamp-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.release.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,9 +24,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66E0D91B2D76E01200B7B156 /* PinLayout in Frameworks */,
-				66E0D9182D76DFE500B7B156 /* FlexLayout in Frameworks */,
-				1943DA3030B46048549FF567 /* Pods_NBCamp_TeamBoard.framework in Frameworks */,
+				66E0D91B2D76E01200B7B156 /* BuildFile in Frameworks */,
+				66E0D9182D76DFE500B7B156 /* BuildFile in Frameworks */,
+				96ECC467A7EC35C059C54C7F /* Pods_NBCamp_TeamBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,8 +36,8 @@
 		0E16FCCC9F2C616AEFDDEA46 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				075FF64AD7E75C719C173D76 /* Pods-NBCamp-TeamBoard.debug.xcconfig */,
-				CDED2CD8D81DC3188D58040A /* Pods-NBCamp-TeamBoard.release.xcconfig */,
+				4C8ED3DE84C6D49A4101AC44 /* Pods-NBCamp-TeamBoard.debug.xcconfig */,
+				A277292DB9105356D98D134B /* Pods-NBCamp-TeamBoard.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -45,10 +45,9 @@
 		618135272D757E000007B7A5 = {
 			isa = PBXGroup;
 			children = (
-				E5857D412D75819500520C54 /* NBCamp-TeamBoard */,
 				618135312D757E000007B7A5 /* Products */,
 				0E16FCCC9F2C616AEFDDEA46 /* Pods */,
-				89623288AB54714B087C5E25 /* Frameworks */,
+				AADEBDF3C869FC816676EFC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +59,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		89623288AB54714B087C5E25 /* Frameworks */ = {
+		AADEBDF3C869FC816676EFC0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				37CCBD8F551931F8B5A8014A /* Pods_NBCamp_TeamBoard.framework */,
+				3DB40B1A400969808F2FA55D /* Pods_NBCamp_TeamBoard.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -75,11 +74,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 618135432D757E010007B7A5 /* Build configuration list for PBXNativeTarget "NBCamp-TeamBoard" */;
 			buildPhases = (
-				AF7938F1C2D635AF65C69A40 /* [CP] Check Pods Manifest.lock */,
+				17EFE75DF2A3612B7A1783D5 /* [CP] Check Pods Manifest.lock */,
 				6181352C2D757E000007B7A5 /* Sources */,
 				6181352D2D757E000007B7A5 /* Frameworks */,
 				6181352E2D757E000007B7A5 /* Resources */,
-				6CC351FFF3BD518DE20F5681 /* [CP] Embed Pods Frameworks */,
+				8DE30DB1336BE1C470897CE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -114,10 +113,6 @@
 			);
 			mainGroup = 618135272D757E000007B7A5;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				66E0D9162D76DFE500B7B156 /* XCRemoteSwiftPackageReference "FlexLayout" */,
-				66E0D9192D76E01200B7B156 /* XCRemoteSwiftPackageReference "PinLayout" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 618135312D757E000007B7A5 /* Products */;
 			projectDirPath = "";
@@ -133,32 +128,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5857D452D75819500520C54 /* Assets.xcassets in Resources */,
-				E5857D472D75819500520C54 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6CC351FFF3BD518DE20F5681 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AF7938F1C2D635AF65C69A40 /* [CP] Check Pods Manifest.lock */ = {
+		17EFE75DF2A3612B7A1783D5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -180,6 +156,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8DE30DB1336BE1C470897CE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -187,41 +180,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56907CA2D783B17005956A4 /* TeamViewModel.swift in Sources */,
-				E5857D492D75821500520C54 /* MainViewController.swift in Sources */,
-				E5857D422D75819500520C54 /* AppDelegate.swift in Sources */,
-				E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */,
-				E56907C62D7832A7005956A4 /* MemberDetailViewController.swift in Sources */,
-				E56907CC2D783B7C005956A4 /* TeamDetailViewController.swift in Sources */,
-				E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */,
-				E5B5F0062D7685960065BD3B /* TitleSupplementaryView.swift in Sources */,
-				E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */,
-				E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */,
-				E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */,
-				E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */,
-				E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */,
-				E56907C82D7837B3005956A4 /* MemberViewModel.swift in Sources */,
-				E56907C42D781C10005956A4 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		E5857D3E2D75819500520C54 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E5857D3D2D75819500520C54 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		618135442D757E010007B7A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 075FF64AD7E75C719C173D76 /* Pods-NBCamp-TeamBoard.debug.xcconfig */;
+			baseConfigurationReference = 4C8ED3DE84C6D49A4101AC44 /* Pods-NBCamp-TeamBoard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -254,7 +221,7 @@
 		};
 		618135452D757E010007B7A5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDED2CD8D81DC3188D58040A /* Pods-NBCamp-TeamBoard.release.xcconfig */;
+			baseConfigurationReference = A277292DB9105356D98D134B /* Pods-NBCamp-TeamBoard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -426,19 +393,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */,
-			);
-			currentVersion = E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */;
-			path = TeamData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 618135282D757E000007B7A5 /* Project object */;
 }
