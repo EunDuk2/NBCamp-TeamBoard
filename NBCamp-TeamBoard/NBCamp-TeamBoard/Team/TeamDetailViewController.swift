@@ -74,6 +74,7 @@ final class TeamDetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.textColor = .black
+        label.numberOfLines = 0
         return label
     }()
     
