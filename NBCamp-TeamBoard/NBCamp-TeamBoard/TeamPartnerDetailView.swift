@@ -9,12 +9,11 @@ import UIKit
 import PinLayout
 import FlexLayout
 
-import UIKit
-
 class TeamPartnerDetailView: UIViewController {
     // Root FlexView
     private let rootFlexView = UIView()
     private let profileFlexView = UIView()
+    private let buttonFlexView = UIView()
     
     // 프로필 이미지
     private let profileImageView: UIImageView = {
@@ -43,14 +42,18 @@ class TeamPartnerDetailView: UIViewController {
     
     private let introductionText: UITextView = {
         let textView = UITextView()
-        textView.text = "잘 부탁드립니다."
+        textView.text = "잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다."
         textView.font = .systemFont(ofSize: 20, weight: .bold)
-        textView.backgroundColor = .gray
+        textView.backgroundColor = .lightGray
+        
+        textView.layer.cornerRadius = 10 // 10pt 만큼 둥글게
+        textView.clipsToBounds = true // 내부 콘텐츠가 모서리를 넘지 않도록
         
         textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
+
         return textView
     }()
+
 
     
     // 가로 스크롤을 위한 ScrollView & StackView
@@ -65,6 +68,7 @@ class TeamPartnerDetailView: UIViewController {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
         stackView.spacing = 20
         return stackView
     }()
@@ -73,15 +77,28 @@ class TeamPartnerDetailView: UIViewController {
     private let notionImageButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "icon_notion")
-        button.setImage(image, for: .normal)
+        button.setBackgroundImage(image, for: .normal)
         button.backgroundColor = .clear
         button.imageView?.contentMode = .scaleAspectFit // 버튼 크기에 맞게 이미지 조정
-        button.addTarget(self, action: #selector(imageButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(notionButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    // Github 버튼
+    private let githubImageButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "icon_github")
+        button.setBackgroundImage(image, for: .normal)
+        button.backgroundColor = .clear
+        button.imageView?.contentMode = .scaleAspectFit // 버튼 크기에 맞게 이미지 조정
+        button.addTarget(self, action: #selector(githubButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    @objc private func imageButtonTapped() {
-        print("이미지 버튼 클릭!")
+    @objc private func notionButtonTapped() {
+        print("노션 버튼 클릭!")
+    }
+    @objc private func githubButtonTapped() {
+        print("깃허브 버튼 클릭!")
     }
     
     private var labels: [UILabel] = []
@@ -117,13 +134,28 @@ class TeamPartnerDetailView: UIViewController {
                         .padding(16)
                         .alignSelf(.start)
                     profileFlex.addItem(scrollView)
-                    profileFlex.addItem(notionImageButton)
+                    
+                    profileFlex.addItem(buttonFlexView)
+                        .direction(.row)
+                        .alignSelf(.center)
+                        .padding(16)
+                        
+                        .define { buttonFlex in
+                            buttonFlex.addItem(notionImageButton)
+                                .size(60)
+                                .marginRight(25)
+                            buttonFlex.addItem(githubImageButton)
+                                .size(60)
+                                .marginLeft(25)
+                        }
+                    
                     profileFlex.addItem(introductionLabel)
                         .alignSelf(.start)
                     profileFlex.addItem(introductionText)
                         .alignSelf(.start)
                         .padding(15)
-                        .size(200)
+                        .width(100%)
+                        .height(200)
                 }
         }
         setupLabels()
@@ -152,17 +184,13 @@ class TeamPartnerDetailView: UIViewController {
         stackView.frame = CGRect(x: 0, y: 0, width: labels.count * 120, height: 50)
         scrollView.contentSize = stackView.frame.size
         
-        // 이 아래 코드가 안 먹힘
-        notionImageButton.pin
-            .height(100)
-        introductionText.pin
-            .horizontally()
+        
         
         rootFlexView.flex.layout()
     }
     
     private func setupLabels() {
-        let items = ["INTP", "영화보기", "음악감상", "운동", "Leader", "Member"] // 임시 데이터
+        let items = ["INTP", "영화보기", "음악감상", "운동", "Leader", "MemberMemberMember"] // 임시 데이터
         let allItems = items + items + items // 3회 반복 후 초기화
         
         allItems.forEach { text in
@@ -173,7 +201,7 @@ class TeamPartnerDetailView: UIViewController {
             label.layer.borderWidth = 1
             label.textAlignment = .center
             label.backgroundColor = randomColor()
-            label.layer.cornerRadius = 20
+            label.layer.cornerRadius = 15
             label.clipsToBounds = true
             label.numberOfLines = 1
             
