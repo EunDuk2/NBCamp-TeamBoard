@@ -138,23 +138,23 @@ class ProfileViewController: UIViewController {
     }
     
     // MARK: - CoreData 로직 - CoreDataManager
-    private func saveMemberProfile() {
-        let manager = CoreDataManager.shared
-        let member = MemberEntity(context: manager.context)
-        
-        member.name = nameTextField.text
-        member.mbti = mbtiTextField.text
-        member.hobby = hobbyTextField.text
-        member.githubLink = githubLinkTextField.text
-        member.introduction = introductionTextView.text
-        member.role = "팀원" // 역할은 필요에 따라 수정
-        
-        if let image = profileImage.image, let imageData = image.pngData() {
-            member.profileImage = imageData
-        }
-        
-        manager.saveContext()
-    }
+//    private func saveMemberProfile() {
+//        let manager = CoreDataManager.shared
+//        let member = MemberEntity(context: manager.context)
+//        
+//        member.name = nameTextField.text
+//        member.mbti = mbtiTextField.text
+//        member.hobby = hobbyTextField.text
+//        member.githubLink = githubLinkTextField.text
+//        member.introduction = introductionTextView.text
+//        member.role = "팀원" // 역할은 필요에 따라 수정
+//        
+//        if let image = profileImage.image, let imageData = image.pngData() {
+//            member.profileImage = imageData
+//        }
+//        
+//        manager.saveContext()
+//    }
 
     
     private func profileButton() {
@@ -164,14 +164,14 @@ class ProfileViewController: UIViewController {
     // Navigation rightBarButton Action
     @objc private func completeButtonClicked() {
         // profileImage + Text -> CoreData
-        saveMemberProfile()
-        // pushNAvigationController
+//        saveMemberProfile()
+//        // pushNavigationController
+//        let vc = ""
     }
     
     @objc private func profileButtonClicked() {
         let imagePicker = UIImagePickerController()
         
-//        imagePicker.sourceType = .camera //실기기 빌드
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
