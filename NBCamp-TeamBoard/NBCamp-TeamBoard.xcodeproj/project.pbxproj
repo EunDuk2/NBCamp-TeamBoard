@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CCFCD4D0165A1C9BFB799FEF /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE262CC95AE8B7BFAE5D4C86 /* Pods_NBCamp_TeamBoard.framework */; };
+		E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E514575B2D77EE010038C2E3 /* AddTeamCell.swift */; };
+		E56907C42D781C10005956A4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C32D781C10005956A4 /* MainViewModel.swift */; };
+		E56907C62D7832A7005956A4 /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */; };
+		E56907C82D7837B3005956A4 /* MemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C72D7837B3005956A4 /* MemberViewModel.swift */; };
+		E56907CA2D783B17005956A4 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907C92D783B17005956A4 /* TeamViewModel.swift */; };
+		E56907CC2D783B7C005956A4 /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */; };
+		E5857D422D75819500520C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5857D3A2D75819500520C54 /* AppDelegate.swift */; };
+		E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5857D3F2D75819500520C54 /* SceneDelegate.swift */; };
+		E5857D452D75819500520C54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5857D3B2D75819500520C54 /* Assets.xcassets */; };
+		E5857D472D75819500520C54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5857D3E2D75819500520C54 /* LaunchScreen.storyboard */; };
+		E5857D492D75821500520C54 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5857D482D75821500520C54 /* MainViewController.swift */; };
+		E5B5F0062D7685960065BD3B /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5F0052D7685960065BD3B /* TitleSupplementaryView.swift */; };
+		E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */; };
+		E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E7E2D76DEF700900C13 /* AddMemberCell.swift */; };
+		E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E47E882D76E1D400900C13 /* CoreDataManager.swift */; };
+		E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E75E1E2D7596950009A2B1 /* MemberCell.swift */; };
+		E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E75E592D75E74A0009A2B1 /* TeamCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		618135302D757E000007B7A5 /* NBCamp-TeamBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NBCamp-TeamBoard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE262CC95AE8B7BFAE5D4C86 /* Pods_NBCamp_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCamp_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B043441DD66F71C8A82B08F3 /* Pods-NBCamp-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.debug.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
+		B80F77B613CB4F918D9F9ACF /* Pods-NBCamp-TeamBoard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.release.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.release.xcconfig"; sourceTree = "<group>"; };
+		E514575B2D77EE010038C2E3 /* AddTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamCell.swift; sourceTree = "<group>"; };
+		E56907C32D781C10005956A4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
+		E56907C72D7837B3005956A4 /* MemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberViewModel.swift; sourceTree = "<group>"; };
+		E56907C92D783B17005956A4 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
+		E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
+		E5857D3A2D75819500520C54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E5857D3B2D75819500520C54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5857D3C2D75819500520C54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5857D3D2D75819500520C54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E5857D3F2D75819500520C54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E5857D482D75821500520C54 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E5B5F0052D7685960065BD3B /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamData.xcdatamodel; sourceTree = "<group>"; };
+		E5E47E7E2D76DEF700900C13 /* AddMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberCell.swift; sourceTree = "<group>"; };
+		E5E47E882D76E1D400900C13 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E5E75E1E2D7596950009A2B1 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		E5E75E592D75E74A0009A2B1 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6181352D2D757E000007B7A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCFCD4D0165A1C9BFB799FEF /* Pods_NBCamp_TeamBoard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		618135272D757E000007B7A5 = {
+			isa = PBXGroup;
+			children = (
+				E5857D412D75819500520C54 /* NBCamp-TeamBoard */,
+				618135312D757E000007B7A5 /* Products */,
+				F3D9C704337958DAA3258094 /* Pods */,
+				950C8B9197E603FD48C2AE55 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		618135312D757E000007B7A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				618135302D757E000007B7A5 /* NBCamp-TeamBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		950C8B9197E603FD48C2AE55 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE262CC95AE8B7BFAE5D4C86 /* Pods_NBCamp_TeamBoard.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E5857D412D75819500520C54 /* NBCamp-TeamBoard */ = {
+			isa = PBXGroup;
+			children = (
+				E5857D3A2D75819500520C54 /* AppDelegate.swift */,
+				E5857D3F2D75819500520C54 /* SceneDelegate.swift */,
+				E5857D4E2D758B4F00520C54 /* Models */,
+				E5857D4F2D758B4F00520C54 /* ViewModels */,
+				E5857D4D2D758B4F00520C54 /* Views */,
+				E5857D3E2D75819500520C54 /* LaunchScreen.storyboard */,
+				E5857D3B2D75819500520C54 /* Assets.xcassets */,
+				E5857D3C2D75819500520C54 /* Info.plist */,
+				E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */,
+			);
+			path = "NBCamp-TeamBoard";
+			sourceTree = "<group>";
+		};
+		E5857D4D2D758B4F00520C54 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5857D482D75821500520C54 /* MainViewController.swift */,
+				E56907CB2D783B7C005956A4 /* TeamDetailViewController.swift */,
+				E56907C52D7832A7005956A4 /* MemberDetailViewController.swift */,
+				E5E75E592D75E74A0009A2B1 /* TeamCell.swift */,
+				E5E75E1E2D7596950009A2B1 /* MemberCell.swift */,
+				E514575B2D77EE010038C2E3 /* AddTeamCell.swift */,
+				E5E47E7E2D76DEF700900C13 /* AddMemberCell.swift */,
+				E5B5F0052D7685960065BD3B /* TitleSupplementaryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E5857D4E2D758B4F00520C54 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5E47E882D76E1D400900C13 /* CoreDataManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E5857D4F2D758B4F00520C54 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E56907C32D781C10005956A4 /* MainViewModel.swift */,
+				E56907C92D783B17005956A4 /* TeamViewModel.swift */,
+				E56907C72D7837B3005956A4 /* MemberViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F3D9C704337958DAA3258094 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B043441DD66F71C8A82B08F3 /* Pods-NBCamp-TeamBoard.debug.xcconfig */,
+				B80F77B613CB4F918D9F9ACF /* Pods-NBCamp-TeamBoard.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6181352F2D757E000007B7A5 /* NBCamp-TeamBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 618135432D757E010007B7A5 /* Build configuration list for PBXNativeTarget "NBCamp-TeamBoard" */;
+			buildPhases = (
+				852BA4021EE8D6FF53E3BDAE /* [CP] Check Pods Manifest.lock */,
+				6181352C2D757E000007B7A5 /* Sources */,
+				6181352D2D757E000007B7A5 /* Frameworks */,
+				6181352E2D757E000007B7A5 /* Resources */,
+				022BDDF8AB0B5C343B18CAB5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NBCamp-TeamBoard";
+			productName = "NBCamp-TeamBoard";
+			productReference = 618135302D757E000007B7A5 /* NBCamp-TeamBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		618135282D757E000007B7A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					6181352F2D757E000007B7A5 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = 6181352B2D757E000007B7A5 /* Build configuration list for PBXProject "NBCamp-TeamBoard" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 618135272D757E000007B7A5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 618135312D757E000007B7A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6181352F2D757E000007B7A5 /* NBCamp-TeamBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6181352E2D757E000007B7A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5857D452D75819500520C54 /* Assets.xcassets in Resources */,
+				E5857D472D75819500520C54 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		022BDDF8AB0B5C343B18CAB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		852BA4021EE8D6FF53E3BDAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NBCamp-TeamBoard-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6181352C2D757E000007B7A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E56907CA2D783B17005956A4 /* TeamViewModel.swift in Sources */,
+				E5857D492D75821500520C54 /* MainViewController.swift in Sources */,
+				E5857D422D75819500520C54 /* AppDelegate.swift in Sources */,
+				E5857D432D75819500520C54 /* SceneDelegate.swift in Sources */,
+				E56907C62D7832A7005956A4 /* MemberDetailViewController.swift in Sources */,
+				E56907CC2D783B7C005956A4 /* TeamDetailViewController.swift in Sources */,
+				E5E47E892D76E1D400900C13 /* CoreDataManager.swift in Sources */,
+				E5B5F0062D7685960065BD3B /* TitleSupplementaryView.swift in Sources */,
+				E5E75E1F2D7596950009A2B1 /* MemberCell.swift in Sources */,
+				E5E75E5A2D75E74A0009A2B1 /* TeamCell.swift in Sources */,
+				E5E47E452D76D34300900C13 /* TeamData.xcdatamodeld in Sources */,
+				E514575C2D77EE010038C2E3 /* AddTeamCell.swift in Sources */,
+				E5E47E7F2D76DEF700900C13 /* AddMemberCell.swift in Sources */,
+				E56907C82D7837B3005956A4 /* MemberViewModel.swift in Sources */,
+				E56907C42D781C10005956A4 /* MainViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E5857D3E2D75819500520C54 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5857D3D2D75819500520C54 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		618135442D757E010007B7A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B043441DD66F71C8A82B08F3 /* Pods-NBCamp-TeamBoard.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NBCamp-TeamBoard/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "TeamBoard.NBCamp-TeamBoard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		618135452D757E010007B7A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B80F77B613CB4F918D9F9ACF /* Pods-NBCamp-TeamBoard.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "NBCamp-TeamBoard/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "TeamBoard.NBCamp-TeamBoard";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		618135462D757E010007B7A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		618135472D757E010007B7A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6181352B2D757E000007B7A5 /* Build configuration list for PBXProject "NBCamp-TeamBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				618135462D757E010007B7A5 /* Debug */,
+				618135472D757E010007B7A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		618135432D757E010007B7A5 /* Build configuration list for PBXNativeTarget "NBCamp-TeamBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				618135442D757E010007B7A5 /* Debug */,
+				618135452D757E010007B7A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E5E47E432D76D34300900C13 /* TeamData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */,
+			);
+			currentVersion = E5E47E442D76D34300900C13 /* TeamData.xcdatamodel */;
+			path = TeamData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 618135282D757E000007B7A5 /* Project object */;
+}
