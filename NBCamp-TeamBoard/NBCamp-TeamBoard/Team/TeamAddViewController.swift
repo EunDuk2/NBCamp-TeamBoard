@@ -175,6 +175,7 @@ class TeamAddViewController: UIViewController {
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -185,9 +186,11 @@ class TeamAddViewController: UIViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
         
         addImageButtonSet()
-        
         setLayout()
+
+        
     }
+    
     
     private func setLayout() {
         containerView.flex.padding(padding).alignItems(.start).define { flex in
@@ -223,6 +226,7 @@ class TeamAddViewController: UIViewController {
         addImageView.addSubview(addLabel)
         addImageView.addSubview(deleteImageBtn)
     }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -237,8 +241,24 @@ class TeamAddViewController: UIViewController {
         
         
         teamScrollView.contentSize = containerView.frame.size
+        
+        // 자동 스크롤
+        goToBottomOfScrollView()
+
+        
     }
     
+    
+    // 자동 스크롤
+    private func goToBottomOfScrollView() {
+        let scrollView = teamScrollView
+        scrollView.scrollRectToVisible(CGRect(x: 0,
+                                              y: scrollView.contentSize.height - scrollView.bounds.height,
+                                              width: scrollView.bounds.size.width,
+                                              height: scrollView.bounds.size.height),
+                                       animated: false)
+    }
+
 }
 
 // MARK: - UITextViewDelegate
@@ -246,14 +266,13 @@ extension TeamAddViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         updateCompleteButtonState()
         
-        
         // 텍스트 뷰 여러줄 크기 조정
         let size = CGSize(width: textView.frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
         
         textView.flex.height(estimatedSize.height > textHeight ? estimatedSize.height : textHeight)
         textView.flex.markDirty()
-        
+                
         teamScrollView.flex.layout(mode: .adjustHeight)
         teamScrollView.contentSize = containerView.frame.size
         
