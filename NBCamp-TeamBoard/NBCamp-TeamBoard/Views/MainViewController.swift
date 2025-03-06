@@ -35,20 +35,23 @@ class MainViewController: UIViewController {
     private var datasource: UICollectionViewDiffableDataSource<Section, CellItem>!
     
     // MARK: - ViewModel
-    private let viewModel = MainViewModel()
+    private let viewModel = MainViewModel(teams: [], members: [])
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureView()
         configureCollectionView()
         bindViewModel()
-        viewModel.fetchSnapshot()
+        updateSnapshot()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchSnapshot()
+        
+        viewModel.fetchTeam()
+        viewModel.fetchMember()
     }
     
     override func viewDidLayoutSubviews() {
@@ -75,6 +78,7 @@ class MainViewController: UIViewController {
     
     @objc private func resetButtonTapped() {
         viewModel.resetData()
+        updateSnapshot()
     }
     
     private func configureCollectionView() {
@@ -147,9 +151,42 @@ class MainViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel.onSnapshotUpdated = { [weak self] snapshot in
-            self?.datasource.apply(snapshot)
+        viewModel.didChangeData = { [weak self] in
+            self?.updateSnapshot()
         }
+        
+        viewModel.didSelectTeam = { [weak self] team in
+            let teamVM = TeamViewModel(team: team)
+            let detailVC = TeamDetailViewController(viewModel: teamVM)
+            self?.navigationController?.pushViewController(detailVC, animated: true)
+        }
+        
+        viewModel.didSelectMember = { [weak self] member in
+            let memberVM = MemberViewModel(member: member)
+            let detailVC = MemberDetailViewController(viewModel: memberVM)
+            self?.navigationController?.pushViewController(detailVC, animated: true)
+
+        }
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
+        
+        if viewModel.teams.isEmpty {
+            snapshot.appendSections([.team])
+            snapshot.appendItems([.addTeam], toSection: .team)
+        } else {
+            snapshot.appendSections(Section.allCases)
+            
+            let teamItems = viewModel.teams.map { CellItem.team($0) }
+            snapshot.appendItems(teamItems, toSection: .team)
+            
+            let memberItems = viewModel.members.map { CellItem.member($0) }
+            snapshot.appendItems(memberItems, toSection: .members)
+            snapshot.appendItems([.addMember], toSection: .members)
+        }
+        
+        datasource.apply(snapshot, animatingDifferences: true)
     }
     
     // MARK: - Layout
@@ -217,9 +254,9 @@ extension MainViewController: UICollectionViewDelegate {
         guard let item = datasource.itemIdentifier(for: indexPath) else { return }
         switch item {
         case .team(let teamItem):
-            viewModel.selectTeam(teamItem, fromCurrentVC: self)
+            viewModel.selectTeam(teamItem)
         case .member(let memberItem):
-            viewModel.selectMember(memberItem, fromCurrentVC: self)
+            viewModel.selectMember(memberItem)
         case .addTeam:
             viewModel.addTeam()
         case .addMember:

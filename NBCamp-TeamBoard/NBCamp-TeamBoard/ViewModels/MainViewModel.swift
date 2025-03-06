@@ -10,57 +10,58 @@ import CoreData
 
 class MainViewModel {
     
-    var onSnapshotUpdated: ((NSDiffableDataSourceSnapshot<Section, CellItem>) -> Void)?
-
-    func fetchSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
-        let teams = CoreDataManager.shared.fetchTeams()
-        
-        if teams.isEmpty {
-            snapshot.appendSections([.team])
-            snapshot.appendItems([.addTeam], toSection: .team)
-        } else {
-            snapshot.appendSections(Section.allCases)
-            snapshot.appendItems(teams.map { CellItem.team($0) }, toSection: .team)
-            
-            let members = CoreDataManager.shared.fetchMembers()
-            snapshot.appendItems(members.map { CellItem.member($0) }, toSection: .members)
-            snapshot.appendItems([.addMember], toSection: .members)
+    var teams: [TeamEntity] {
+        didSet {
+            didChangeData()
         }
-        
-        onSnapshotUpdated?(snapshot)
+    }
+    
+    var members: [MemberEntity] {
+        didSet {
+            didChangeData()
+        }
+    }
+    
+    var didChangeData: (() -> ()) = {}
+    var didSelectTeam: ((TeamEntity) -> ()) = { _ in }
+    var didSelectMember: ((MemberEntity) -> ()) = { _ in }
+    
+    
+    init(teams: [TeamEntity], members: [MemberEntity]) {
+        self.teams = teams
+        self.members = members
+    }
+    
+    
+    func fetchTeam() {
+        self.teams = CoreDataManager.shared.fetchTeams()
+    }
+    
+    func fetchMember() {
+        self.members = CoreDataManager.shared.fetchMembers()
     }
     
     func addTeam() {
         CoreDataManager.shared.addTeam()
-        fetchSnapshot()
+        fetchTeam()
     }
     
     func addMember() {
         CoreDataManager.shared.addMember()
-        fetchSnapshot()
+        fetchMember()
     }
     
-    func selectTeam(_ team: TeamEntity, fromCurrentVC: UIViewController) {
-        let teamVM = TeamViewModel(team: team)
-        
-        let navVC = fromCurrentVC.navigationController
-        
-        let detailVC = TeamDetailViewController(viewModel: teamVM)
-        navVC?.pushViewController(detailVC, animated: true)
+    func selectTeam(_ team: TeamEntity) {
+        didSelectTeam(team)
     }
     
-    func selectMember(_ member: MemberEntity, fromCurrentVC: UIViewController) {
-        let memberVM = MemberViewModel(member: member)
-        
-        let navVC = fromCurrentVC.navigationController
-        
-        let detailVC = MemberDetailViewController(viewModel: memberVM)
-        navVC?.pushViewController(detailVC, animated: true)
+    func selectMember(_ member: MemberEntity) {
+        didSelectMember(member)
     }
 
     func resetData() {
         CoreDataManager.shared.resetData()
-        fetchSnapshot()
+        fetchTeam()
+        fetchMember()
     }
 }
