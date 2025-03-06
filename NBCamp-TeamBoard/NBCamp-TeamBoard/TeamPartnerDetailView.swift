@@ -9,56 +9,89 @@ import UIKit
 import PinLayout
 import FlexLayout
 
+import UIKit
+
 class TeamPartnerDetailView: UIViewController {
-    // 기본, 전체 화면을 덮는 FlexView
+    // Root FlexView
     private let rootFlexView = UIView()
-    // 프로필에 필요한 정보를 수직으로 나열하는 FlexView
     private let profileFlexView = UIView()
-    // 프로필 이미지 뷰
-    private let profileImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "profile1")
+    
+    // 프로필 이미지
+    private let profileImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "profile1"))
         imageView.clipsToBounds = true
         return imageView
     }()
-    // 프로필 이름 레이블
+    
+    // 프로필 이름
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "조은성"
-        label.font = .systemFont(ofSize: 50, weight: .bold)
-        label.backgroundColor = .yellow
+        label.font = .systemFont(ofSize: 40, weight: .bold)
         label.numberOfLines = 1
         return label
     }()
     
-    // ScrollView + StackView를 활용하여 가로 무한 스크롤 구현
-    // FlexView를 통해 가로 배치는 가능하지만 스크롤 하기 어려움
-    private let scrollView = {
+    // 소개 제목
+    private let introductionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "소개"
+        label.font = .systemFont(ofSize: 30, weight: .bold)
+        return label
+    }()
+    
+    
+    private let introductionText: UITextView = {
+        let textView = UITextView()
+        textView.text = "잘 부탁드립니다."
+        textView.font = .systemFont(ofSize: 20, weight: .bold)
+        textView.backgroundColor = .gray
+        
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        return textView
+    }()
+
+    
+    // 가로 스크롤을 위한 ScrollView & StackView
+    private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isPagingEnabled = false
         scrollView.isScrollEnabled = false
         return scrollView
     }()
-    private let stackView = {
+    
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 20
         return stackView
     }()
     
+    // Notion 버튼
+    private let notionImageButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "icon_notion")
+        button.setImage(image, for: .normal)
+        button.backgroundColor = .clear
+        button.imageView?.contentMode = .scaleAspectFit // 버튼 크기에 맞게 이미지 조정
+        button.addTarget(self, action: #selector(imageButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func imageButtonTapped() {
+        print("이미지 버튼 클릭!")
+    }
+    
     private var labels: [UILabel] = []
     private var timer: Timer?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 최상단 뷰 배경색 설정
         view.backgroundColor = .systemBackground
-        
-        // 네비게이션 바 타이틀 설정
         title = "상세 정보"
-
-        // Right Bar Button 추가
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "편집",
             style: .plain,
@@ -66,67 +99,71 @@ class TeamPartnerDetailView: UIViewController {
             action: #selector(editButtonTapped)
         )
         
-        // PinLaoyout & FlexLayout 사용을 위한 최초 FlexView 배치
         view.addSubview(rootFlexView)
         rootFlexView.backgroundColor = .systemBackground
-        profileFlexView.backgroundColor = .systemBlue
+        profileFlexView.backgroundColor = .systemBackground
         
         scrollView.addSubview(stackView)
         
-        // flex의 addItem을 사용하여 자식 뷰나 컨트롤들을 StackView처럼 추가할 수 있다.
         rootFlexView.flex.define { rootFlex in
-            rootFlex.addItem(profileFlexView) // rootFlex뷰 안에 자식 뷰로 profileFlexView 배치
-                .alignItems(.center) // 사진은 중앙정렬, 나머지는 왼쪽 정렬 필요
+            rootFlex.addItem(profileFlexView)
+                .alignItems(.center)
                 .padding(16)
-                .backgroundColor(.green)
                 .define { profileFlex in
                     profileFlex.addItem(profileImageView)
                         .size(260)
                         .cornerRadius(15)
                     profileFlex.addItem(nameLabel)
                         .padding(16)
-//                        .alignItems(.start) // 이름은 왼쪽 정렬해야 되는데 안 먹힘
                         .alignSelf(.start)
                     profileFlex.addItem(scrollView)
-            }
+                    profileFlex.addItem(notionImageButton)
+                    profileFlex.addItem(introductionLabel)
+                        .alignSelf(.start)
+                    profileFlex.addItem(introductionText)
+                        .alignSelf(.start)
+                        .padding(15)
+                        .size(200)
+                }
         }
         setupLabels()
         startScrolling()
     }
     
     @objc private func editButtonTapped() {
-        print("편집 버튼 클릭됨!")
+        print("편집 버튼 클릭!")
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        // rootFlexView는 SafeArea만 덮도록 설정
         rootFlexView.pin.all(view.pin.safeArea)
         
         profileFlexView.pin
             .top(view.safeAreaInsets.top)
             .horizontally()
-//            .height(120)
         
         scrollView.pin
             .below(of: profileFlexView, aligned: .center)
             .width(100%)
             .height(50)
-            .marginTop(20)
+//            .marginTop(20)
         
         stackView.frame = CGRect(x: 0, y: 0, width: labels.count * 120, height: 50)
         scrollView.contentSize = stackView.frame.size
         
-        // flexView의 children 레이아웃 잡기
+        // 이 아래 코드가 안 먹힘
+        notionImageButton.pin
+            .height(100)
+        introductionText.pin
+            .horizontally()
+        
         rootFlexView.flex.layout()
     }
     
     private func setupLabels() {
-        let items = ["INTP", "영화보기", "음악감상", "운동", "Leader", "MemberMemberMember"]
-        
-        // 기존 아이템 + 무한 스크롤을 위한 복제 아이템 추가
-        let allItems = items + items + items // 🚀 아이템 2배 추가
+        let items = ["INTP", "영화보기", "음악감상", "운동", "Leader", "Member"] // 임시 데이터
+        let allItems = items + items + items // 3회 반복 후 초기화
         
         allItems.forEach { text in
             let label = UILabel()
@@ -140,18 +177,14 @@ class TeamPartnerDetailView: UIViewController {
             label.clipsToBounds = true
             label.numberOfLines = 1
             
-            // 📌 고정된 패딩 유지 (좌우 16px씩 추가)
             let horizontalPadding: CGFloat = 16
-            
-            // 기본 너비 100
             var width: CGFloat = 100
-
-            // 글자 수가 5개 이상이면 동적 크기 조정
+            
             if text.count > 5 {
                 let size = (text as NSString).size(withAttributes: [.font: label.font])
-                width = size.width + horizontalPadding * 2 // 🚀 패딩 균일 적용
+                width = size.width + horizontalPadding * 2
             }
-
+            
             label.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 label.widthAnchor.constraint(equalToConstant: width),
@@ -162,17 +195,15 @@ class TeamPartnerDetailView: UIViewController {
             stackView.addArrangedSubview(label)
         }
     }
-
     
     func randomColor() -> UIColor {
         return UIColor(
-            red: CGFloat.random(in: 0.2...1),
-            green: CGFloat.random(in: 0.2...1),
-            blue: CGFloat.random(in: 0.2...1),
+            red: CGFloat.random(in: 0.1...0.9),
+            green: CGFloat.random(in: 0.1...0.9),
+            blue: CGFloat.random(in: 0.1...0.9),
             alpha: 1.0
         )
     }
-
     
     private func startScrolling() {
         timer = Timer.scheduledTimer(timeInterval: 0.02, target: self, selector: #selector(scrollLabels), userInfo: nil, repeats: true)
@@ -181,8 +212,7 @@ class TeamPartnerDetailView: UIViewController {
     @objc private func scrollLabels() {
         let currentX = scrollView.contentOffset.x
         let newX = currentX + 1
-
-        // 맨 끝까지 가면 처음으로 되돌리기
+        
         if newX > stackView.frame.width / 2 {
             scrollView.contentOffset.x = 0
         } else {
@@ -190,5 +220,6 @@ class TeamPartnerDetailView: UIViewController {
         }
     }
 }
+
 
 
