@@ -59,7 +59,7 @@ final class PartnerDetailView: UIView {
     }()
 
     // 가로 스크롤을 위한 ScrollView & StackView
-    private lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isPagingEnabled = false
@@ -67,12 +67,8 @@ final class PartnerDetailView: UIView {
         return scrollView
     }()
     
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 20
-        return stackView
+    lazy var marqueeFlexView: UIView = {
+        return UIView()
     }()
     
     // Notion 버튼
@@ -113,7 +109,7 @@ final class PartnerDetailView: UIView {
         profileFlexView.backgroundColor = .systemBackground
         
         addSubview(rootFlexView)
-        scrollView.addSubview(stackView)
+        scrollView.addSubview(marqueeFlexView)
         
         rootFlexView.flex.define { rootFlex in
             rootFlex.addItem(profileFlexView)
@@ -126,7 +122,17 @@ final class PartnerDetailView: UIView {
                     profileFlex.addItem(nameLabel)
                         .padding(16)
                         .alignSelf(.start)
-//                    profileFlex.addItem(scrollView)
+                 
+                    profileFlex.addItem(scrollView)
+                        .width(100%)
+                        .height(50)
+                        .marginHorizontal(-16)
+                        .define { scrollFlex in
+                            scrollFlex.addItem(marqueeFlexView)
+                                .direction(.row)
+                                .justifyContent(.start)
+                                .alignItems(.center)
+                        }
                     
                     profileFlex.addItem(buttonFlexView)
                         .direction(.row)
@@ -144,7 +150,6 @@ final class PartnerDetailView: UIView {
                     profileFlex.addItem(introductionLabel)
                         .alignSelf(.start)
                         
-                    
                     profileFlex.addItem(introductionText)
                         .alignSelf(.start)
                         .paddingTop(10)
@@ -159,16 +164,7 @@ final class PartnerDetailView: UIView {
         
         profileFlexView.pin
             .all()
-        
-//        scrollView.pin
-//            .below(of: profileFlexView, aligned: .center)
-//            .width(100%)
-//            .height(50)
-//        
-//        stackView.frame = CGRect(x: 0, y: 0, width: labels.count * 120, height: 50)
-//        scrollView.contentSize = stackView.frame.size
+     
         rootFlexView.flex.layout()
     }
-    
-
 }

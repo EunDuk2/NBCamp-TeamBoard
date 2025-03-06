@@ -11,7 +11,7 @@ import FlexLayout
 
 final class PartnerDetailViewController: UIViewController {
     
-    private var labels: [UILabel] = []
+    private var labels: [(UILabel, CGFloat)] = []
     private var timer: Timer?
     
     private lazy var partnerDetailView: PartnerDetailView = {
@@ -23,8 +23,8 @@ final class PartnerDetailViewController: UIViewController {
     
         configureNavigationBar()
         configureUI()
-//        setupLabels()
-//        startScrolling()
+        setupLabels()
+        startScrolling()
     }
 
     override func viewDidLayoutSubviews() {
@@ -85,15 +85,17 @@ final class PartnerDetailViewController: UIViewController {
                 width = size.width + horizontalPadding * 2
             }
             
-            label.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                label.widthAnchor.constraint(equalToConstant: width),
-                label.heightAnchor.constraint(equalToConstant: 40)
-            ])
-            
-            labels.append(label)
-//            stackView.addArrangedSubview(label)
+            labels.append((label, width))
         }
+        partnerDetailView.marqueeFlexView.flex
+            .direction(.row).define { marqueeFlex in
+                labels.forEach{
+                    marqueeFlex.addItem($0.0)
+                        .marginRight(15)
+                        .width($0.1)
+                        .height(40)
+                }
+            }
     }
     
     func randomColor() -> UIColor {
@@ -110,14 +112,18 @@ final class PartnerDetailViewController: UIViewController {
     }
     
     @objc private func scrollLabels() {
-//        let currentX = scrollView.contentOffset.x
-//        let newX = currentX + 1
-//        
-//        if newX > stackView.frame.width / 2 {
-//            scrollView.contentOffset.x = 0
-//        } else {
-//            scrollView.contentOffset.x = newX
-//        }
+        let currentX = partnerDetailView.scrollView.contentOffset.x
+        let newX = currentX + 1
+        
+        if newX > partnerDetailView.marqueeFlexView.frame.width / 2 {
+            DispatchQueue.main.async { [weak self] in
+                self?.partnerDetailView.scrollView.contentOffset.x = 0
+            }
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.partnerDetailView.scrollView.contentOffset.x = newX
+            }
+        }
     }
 }
 
