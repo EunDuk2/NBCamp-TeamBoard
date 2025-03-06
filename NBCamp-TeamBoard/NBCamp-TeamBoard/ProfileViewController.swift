@@ -12,7 +12,7 @@ import FlexLayout
 class ProfileViewController: UIViewController {
     
     private let rootFlexContainer = UIView()
-    private let profileImageButton = UIButton()
+    private let profileImage = UIImageView()
     private let addImageButton = UIButton()
     
     private let nameLabel = UILabel()
@@ -59,10 +59,10 @@ class ProfileViewController: UIViewController {
         view.addSubview(rootFlexContainer)
         
         // 프로필 이미지 설정
-        profileImageButton.setImage(UIImage(systemName: "person.crop.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 100, weight: .regular)), for: .normal)
-        profileImageButton.layer.cornerRadius = 50
-        profileImageButton.clipsToBounds = true
-        profileImageButton.imageView?.contentMode = .scaleAspectFill
+        profileImage.image = UIImage(systemName: "person.crop.circle.fill")
+        profileImage.layer.cornerRadius = 50
+        profileImage.clipsToBounds = true
+        profileImage.contentMode = .scaleAspectFill
         
         addImageButton.setImage(UIImage(systemName: "plus.circle.fill")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 30, weight: .regular)), for: .normal)
         addImageButton.tintColor = .white
@@ -111,7 +111,7 @@ class ProfileViewController: UIViewController {
             
             flex.addItem().alignItems(.center).marginTop(20).define { row in
                 row.addItem().define { imageContainer in
-                    imageContainer.addItem(profileImageButton).size(100)
+                    imageContainer.addItem(profileImage).size(100)
                     imageContainer.addItem(addImageButton).size(30).position(.absolute)
                         .right(0).bottom(0)
                 }
@@ -137,7 +137,6 @@ class ProfileViewController: UIViewController {
     }
     
     private func profileButton() {
-        profileImageButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
         addImageButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
     }
     
@@ -147,6 +146,41 @@ class ProfileViewController: UIViewController {
     }
     
     @objc private func profileButtonClicked() {
-        print("프로필 클릭됨")
+        let imagePicker = UIImagePickerController()
+        
+//        imagePicker.sourceType = .camera //실기기 빌드
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true)
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print(#function)
+        
+        // 이미지를 선택
+        
+        // Any? -> UIImage [ 타입 캐스팅 ]
+        let image = info[UIImagePickerController.InfoKey.editedImage] // orginalImage일 경우 편집된 이미지 적용 불가 editedImage 써줘야함
+        
+        if let result = image as? UIImage {
+            profileImage.image = result
+        } else {
+            // 토스트 메시지
+            // 얼럿 메시지
+            print("타입 캐스팅 실패")
+        }
+        
+        // 이미지뷰에 이미지를 넣는 작업, 피커 dismiss
+        dismiss(animated: true)
+        
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print(#function)
+        
+        dismiss(animated: true)
     }
 }
