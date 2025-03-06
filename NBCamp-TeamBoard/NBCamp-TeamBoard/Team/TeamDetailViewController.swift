@@ -16,6 +16,8 @@ final class TeamDetailViewController: UIViewController {
     
     private let imageSize: CGFloat = 300
     private let padding: CGFloat = 24
+    private let categoryFontSize: CGFloat = 20
+    private let subtextFontSize: CGFloat = 16
     
     private lazy var teamScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -24,6 +26,8 @@ final class TeamDetailViewController: UIViewController {
     private lazy var containerView = UIView()
     
     // MARK: - UI 요소
+    
+    // 이미지
     private lazy var teamImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -32,47 +36,53 @@ final class TeamDetailViewController: UIViewController {
         return imageView
     }()
     
+    // 팀 이름
     private lazy var teamName: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.font = .systemFont(ofSize: 28, weight: .bold)
+        label.numberOfLines = 0
         return label
     }()
     
+    
+    // 팀 규칙
     private lazy var rules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "Rules"
         return label
     }()
     private lazy var teamRules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: subtextFontSize)
         label.numberOfLines = 0
         return label
     }()
     
+    
+    // 팀 일정
     private lazy var schedules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "Schedules"
         return label
     }()
     private lazy var teamSchedules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: subtextFontSize)
         label.numberOfLines = 0
         return label
     }()
     
     private lazy var TMI: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "TMI"
         return label
     }()
     private lazy var teamTMI: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
+        label.font = .systemFont(ofSize: subtextFontSize, weight: .regular)
         label.textColor = .black
         label.numberOfLines = 0
         return label
@@ -105,17 +115,17 @@ final class TeamDetailViewController: UIViewController {
             flex.addItem(teamName).padding(padding)
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(rules)
+                flex.addItem(rules).marginBottom(8)
                 flex.addItem(teamRules)
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(schedules)
+                flex.addItem(schedules).marginBottom(8)
                 flex.addItem(teamSchedules)
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(TMI)
+                flex.addItem(TMI).marginBottom(8)
                 flex.addItem(teamTMI)
             }
         }

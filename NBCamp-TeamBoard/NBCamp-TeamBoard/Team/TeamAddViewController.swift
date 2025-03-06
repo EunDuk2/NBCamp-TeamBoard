@@ -19,6 +19,9 @@ class TeamAddViewController: UIViewController {
     private let padding: CGFloat = 24
     private let textPadding = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     private let textHeight: CGFloat = 30
+    private let categoryFontSize: CGFloat = 16
+    private let subtextFontSize: CGFloat = 12
+
     
     private lazy var teamScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -53,7 +56,7 @@ class TeamAddViewController: UIViewController {
         let image = UIImage(systemName: "x.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20))
         let btn = UIButton()
         btn.setImage(image, for: .normal)
-        btn.tintColor = .systemRed
+        btn.tintColor = .systemGray2
         btn.addTarget(self, action: #selector(didTapDeleteImage), for: .touchUpInside)
         return btn
     }()
@@ -62,7 +65,7 @@ class TeamAddViewController: UIViewController {
     // 팀 이름
     private lazy var teamName: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "Team Name"
         return label
     }()
@@ -70,11 +73,15 @@ class TeamAddViewController: UIViewController {
         let textField = UITextField()
         textField.backgroundColor = .systemGray5
         textField.layer.cornerRadius = 8
-        textField.font = .systemFont(ofSize: 12)
+        textField.font = .systemFont(ofSize: subtextFontSize)
         // 왼쪽 패딩
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = leftPaddingView
         textField.leftViewMode = .always
+        // 오른쪽 패딩
+        let rightPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        textField.rightView = rightPaddingView
+        textField.rightViewMode = .always
         return textField
     }()
     
@@ -82,7 +89,7 @@ class TeamAddViewController: UIViewController {
     // 팀 규칙
     private lazy var rules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "Rules"
         return label
     }()
@@ -99,7 +106,7 @@ class TeamAddViewController: UIViewController {
     
     private lazy var schedules: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "Schedules"
         return label
     }()
@@ -116,7 +123,7 @@ class TeamAddViewController: UIViewController {
     
     private lazy var TMI: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: .bold)
         label.text = "TMI"
         return label
     }()
@@ -201,23 +208,23 @@ class TeamAddViewController: UIViewController {
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(teamName)
-                flex.addItem(addTeamName).paddingTop(4).width(view.frame.width - padding * 2).height(textHeight)
+                flex.addItem(teamName).marginBottom(8)
+                flex.addItem(addTeamName).width(view.frame.width - padding * 2).height(textHeight)
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(rules)
-                flex.addItem(addRules).paddingTop(4).width(view.frame.width - padding * 2)
+                flex.addItem(rules).marginBottom(8)
+                flex.addItem(addRules).width(view.frame.width - padding * 2)
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(schedules)
-                flex.addItem(addSchedules).paddingTop(4).width(view.frame.width - padding * 2)
+                flex.addItem(schedules).marginBottom(8)
+                flex.addItem(addSchedules).width(view.frame.width - padding * 2)
             }
             
             flex.addItem().paddingBottom(padding).direction(.column).define { flex in
-                flex.addItem(TMI)
-                flex.addItem(addTMI).paddingTop(4).width(view.frame.width - padding * 2)
+                flex.addItem(TMI).marginBottom(8)
+                flex.addItem(addTMI).width(view.frame.width - padding * 2)
             }
         }
         
