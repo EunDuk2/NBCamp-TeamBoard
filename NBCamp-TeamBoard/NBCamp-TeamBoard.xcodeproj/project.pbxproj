@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66C1DB8C2D79781B0091579F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 66C1DB8B2D79781B0091579F /* .gitignore */; };
 		66E0D9182D76DFE500B7B156 /* FlexLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D9172D76DFE500B7B156 /* FlexLayout */; };
 		66E0D91B2D76E01200B7B156 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 66E0D91A2D76E01200B7B156 /* PinLayout */; };
 		A882424447D1D126BC76AC1F /* Pods_NBCamp_TeamBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645B5EE1E88B77EDDA0EBB9D /* Pods_NBCamp_TeamBoard.framework */; };
@@ -17,6 +18,7 @@
 		18A8A5D12FCE0E4BB2E9317B /* Pods-NBCamp-TeamBoard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NBCamp-TeamBoard.debug.xcconfig"; path = "Target Support Files/Pods-NBCamp-TeamBoard/Pods-NBCamp-TeamBoard.debug.xcconfig"; sourceTree = "<group>"; };
 		618135302D757E000007B7A5 /* NBCamp-TeamBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NBCamp-TeamBoard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		645B5EE1E88B77EDDA0EBB9D /* Pods_NBCamp_TeamBoard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NBCamp_TeamBoard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66C1DB8B2D79781B0091579F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -70,6 +72,7 @@
 				618135312D757E000007B7A5 /* Products */,
 				0E16FCCC9F2C616AEFDDEA46 /* Pods */,
 				EE732B9A9428602FC7DA125F /* Frameworks */,
+				66C1DB8B2D79781B0091579F /* .gitignore */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C1DB8C2D79781B0091579F /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
