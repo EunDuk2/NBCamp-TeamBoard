@@ -98,12 +98,12 @@ final class PartnerDetailViewController: UIViewController {
             }
     }
     
-    func randomColor() -> UIColor {
+    private func randomColor() -> UIColor {
         return UIColor(
             red: CGFloat.random(in: 0.1...0.9),
             green: CGFloat.random(in: 0.1...0.9),
             blue: CGFloat.random(in: 0.1...0.9),
-            alpha: 1.0
+            alpha: 0.5
         )
     }
     
