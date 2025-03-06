@@ -8,6 +8,7 @@
 import UIKit
 import PinLayout
 import FlexLayout
+import CoreData
 
 class ProfileViewController: UIViewController {
     
@@ -136,13 +137,35 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK: - CoreData 로직 - CoreDataManager
+    private func saveMemberProfile() {
+        let manager = CoreDataManager.shared
+        let member = MemberEntity(context: manager.context)
+        
+        member.name = nameTextField.text
+        member.mbti = mbtiTextField.text
+        member.hobby = hobbyTextField.text
+        member.githubLink = githubLinkTextField.text
+        member.introduction = introductionTextView.text
+        member.role = "팀원" // 역할은 필요에 따라 수정
+        
+        if let image = profileImage.image, let imageData = image.pngData() {
+            member.profileImage = imageData
+        }
+        
+        manager.saveContext()
+    }
+
+    
     private func profileButton() {
         addImageButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
     }
     
     // Navigation rightBarButton Action
     @objc private func completeButtonClicked() {
-        print("완료 버튼 클릭됨")
+        // profileImage + Text -> CoreData
+        saveMemberProfile()
+        // pushNAvigationController
     }
     
     @objc private func profileButtonClicked() {
