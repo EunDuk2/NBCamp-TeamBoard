@@ -70,7 +70,7 @@ final class MemberDetailView: UIView {
     }()
     
     // Notion 버튼
-    private lazy var notionImageButton: UIButton = {
+    lazy var notionImageButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "icon_notion")
         button.setBackgroundImage(image, for: .normal)
@@ -79,7 +79,7 @@ final class MemberDetailView: UIView {
         return button
     }()
     // Github 버튼
-    private lazy var githubImageButton: UIButton = {
+    lazy var githubImageButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "icon_github")
         button.setBackgroundImage(image, for: .normal)

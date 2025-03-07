@@ -9,6 +9,7 @@ import UIKit
 import PinLayout
 import FlexLayout
 import CoreData
+import SafariServices
 
 final class MemberDetailViewController: UIViewController {
     
@@ -26,6 +27,7 @@ final class MemberDetailViewController: UIViewController {
     
         configureNavigationBar()
         configureUI()
+        addButtonAction()
         setupLabels()
         startScrolling()
     }
@@ -68,11 +70,20 @@ final class MemberDetailViewController: UIViewController {
     }
     
     @objc private func notionButtonTapped() {
-        print("노션 버튼 클릭!")
+        guard let notionURLString = memberEntity?.notionLink, let url = URL(string: notionURLString) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
     }
     
     @objc private func githubButtonTapped() {
-        print("깃허브 버튼 클릭!")
+        guard let githubURLString = memberEntity?.githubLink, let url = URL(string: githubURLString) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
+    
+    private func addButtonAction(){
+        memberDetailView.notionImageButton.addTarget(self, action: #selector(notionButtonTapped), for: .touchUpInside)
+        memberDetailView.githubImageButton.addTarget(self, action: #selector(githubButtonTapped), for: .touchUpInside)
     }
     
     private func setupLabels() {
