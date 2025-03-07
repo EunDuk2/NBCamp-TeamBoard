@@ -80,7 +80,7 @@ final class CoreDataManager {
         saveContext()
     }
     
-    func addMember(image: Data?, name: String, mbti: String, hobby: String, githubLink: String, introduction: String, role: String)  {
+    func addMember(image: Data?, name: String, mbti: String, hobby: String, githubLink: String, introduction: String, role: String, notionLink: String)  {
         
         let member = MemberEntity(context: context)
         member.image = image
@@ -90,11 +90,11 @@ final class CoreDataManager {
         member.githubLink = githubLink
         member.introduction = introduction
         member.role = role
-        
+        member.notionLink = notionLink
         saveContext()
     }
     
-    func editMember(member: MemberEntity, image: Data?, name: String, mbti: String, hobby: String, githubLink: String, introduction: String, role: String)  {
+    func editMember(member: MemberEntity, image: Data?, name: String, mbti: String, hobby: String, githubLink: String, introduction: String, role: String, notionLink: String)  {
         
         member.image = image
         member.name = name
@@ -102,6 +102,7 @@ final class CoreDataManager {
         member.hobby = hobby
         member.githubLink = githubLink
         member.introduction = introduction
+        member.notionLink = notionLink
         member.role = role
         
         saveContext()
