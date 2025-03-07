@@ -76,11 +76,13 @@ final class MemberDetailViewController: UIViewController {
     }
     
     private func setupLabels() {
-        guard let hobbyString = memberEntity?.hobby else { return }
-        let hobbies = hobbyString.split { $0 == " " || $0 == "," }.map { String($0) }.filter { !$0.isEmpty }
-        print(hobbies)
+        guard let memberEntity = memberEntity else { return }
+        let mbti = memberEntity.mbti ?? "INTJ"
+        let role = memberEntity.role ?? "팀원"
+        let hobby = memberEntity.hobby ?? "iOS 코딩"
+        let items = [mbti, role, hobby]
 
-        let allItems = hobbies + hobbies + hobbies // 3회 반복 후 초기화
+        let allItems = items + items + items // 3회 반복 후 초기화
         
         allItems.forEach { text in
             let label = UILabel()
