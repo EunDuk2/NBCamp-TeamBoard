@@ -10,7 +10,13 @@ import PinLayout
 import FlexLayout
 import CoreData
 
-class ProfileViewController: UIViewController {
+protocol EditMemberDelegate: AnyObject {
+    func editMember()
+}
+
+class AddMemberViewController: UIViewController {
+    
+    weak var delegate: EditMemberDelegate?
     
     var memberEntity: MemberEntity?
     
@@ -51,18 +57,32 @@ class ProfileViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
 
-        // 타이틀 설정
-        navigationItem.title = "프로필 추가"
-        
-        // 완료 버튼 추가
-        let completeButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(completeButtonClicked))
-        navigationItem.rightBarButtonItem = completeButton
+        if let memberEntity = memberEntity {
+            navigationItem.title = "멤버 수정"
+            // 완료 버튼 추가
+            let completeButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(completeButtonClicked))
+            navigationItem.rightBarButtonItem = completeButton
+            
+            profileImage.image = UIImage(data: memberEntity.image ?? Data())
+            nameTextField.text = memberEntity.name
+            mbtiTextField.text = memberEntity.mbti
+            hobbyTextField.text = memberEntity.hobby
+            githubLinkTextField.text = memberEntity.githubLink
+            introductionTextView.text = memberEntity.introduction
+            
+        } else {
+            navigationItem.title = "멤버 추가"
+            // 완료 버튼 추가
+            let completeButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(completeButtonClicked))
+            navigationItem.rightBarButtonItem = completeButton
+            
+            profileImage.image = UIImage(systemName: "person.crop.circle.fill")
+        }
         
         // 뷰 추가
         view.addSubview(rootFlexContainer)
         
         // 프로필 이미지 설정
-        profileImage.image = UIImage(systemName: "person.crop.circle.fill")
         profileImage.layer.cornerRadius = 50
         profileImage.clipsToBounds = true
         profileImage.contentMode = .scaleAspectFill
@@ -139,26 +159,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    // MARK: - CoreData 로직 - CoreDataManager
-    private func saveMemberProfile() {
-        let image = profileImage.image?.pngData()
-        let name = nameTextField.text ?? ""
-        let mbti = mbtiTextField.text ?? ""
-        let hobby = hobbyTextField.text ?? ""
-        let githubLink = githubLinkTextField.text ?? ""
-        let introduction = introductionTextView.text ?? ""
-        let role = "팀원" // 역할은 필요에 따라 수정
-        
-        if let member = memberEntity {
-            CoreDataManager.shared.editMember(member: member, image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
-        } else {
-            CoreDataManager.shared.addMember(image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
-        }
-        
-
-    }
-
-    
     private func profileButton() {
         addImageButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
     }
@@ -174,6 +174,8 @@ class ProfileViewController: UIViewController {
         let role = "팀원" // 역할은 필요에 따라 수정
         
         if let member = memberEntity {
+            delegate?.editMember()
+            
             CoreDataManager.shared.editMember(member: member, image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
         } else {
             CoreDataManager.shared.addMember(image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
@@ -192,7 +194,7 @@ class ProfileViewController: UIViewController {
     }
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddMemberViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print(#function)

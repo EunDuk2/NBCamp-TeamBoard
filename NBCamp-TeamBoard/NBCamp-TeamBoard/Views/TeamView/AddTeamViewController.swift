@@ -11,7 +11,13 @@ import FlexLayout
 import PinLayout
 import CoreData
 
+protocol EditTeamDelegate: AnyObject {
+    func editTeam()
+}
+
 class AddTeamViewController: UIViewController {
+    
+    weak var delegate: EditTeamDelegate?
     
     var teamEntity: TeamEntity?
     
@@ -178,24 +184,25 @@ class AddTeamViewController: UIViewController {
             let schedules = addSchedules.text ?? ""
             let tmi = addTMI.text ?? ""
             
+            delegate?.editTeam()
+            
             CoreDataManager.shared.editTeam(team: teamEntity ,image: image, name: name, rule: rule,
                                             schedules: schedules, tmi: tmi)
             
             self.navigationController?.popToRootViewController(animated: true)
         } else {
-            if teamEntity == nil {
-                print("팀 추가 완료")
-                let image = addImageView.image?.pngData() ?? Data()
-                let name = addTeamName.text ?? ""
-                let rule = addRules.text ?? ""
-                let schedules = addSchedules.text ?? ""
-                let tmi = addTMI.text ?? ""
-                
-                CoreDataManager.shared.addTeam(image: image, name: name, rule: rule,
-                                               schedules: schedules, tmi: tmi)
-                
-                self.navigationController?.popViewController(animated: true)
-            }
+            print("팀 추가 완료")
+            let image = addImageView.image?.pngData() ?? Data()
+            let name = addTeamName.text ?? ""
+            let rule = addRules.text ?? ""
+            let schedules = addSchedules.text ?? ""
+            let tmi = addTMI.text ?? ""
+            
+            CoreDataManager.shared.addTeam(image: image, name: name, rule: rule,
+                                           schedules: schedules, tmi: tmi)
+            
+            self.navigationController?.popViewController(animated: true)
+            
         }
     }
     

@@ -25,7 +25,7 @@
 		E51D07852D79DBA4001F8C5D /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D07822D79DBA4001F8C5D /* TeamDetailViewController.swift */; };
 		E51D078C2D79E468001F8C5D /* MemberDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D078A2D79E468001F8C5D /* MemberDetailView.swift */; };
 		E51D078D2D79E468001F8C5D /* MemberDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51D078B2D79E468001F8C5D /* MemberDetailViewController.swift */; };
-		E56A7F802D79E7250043475A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A7F7E2D79E7250043475A /* ProfileViewController.swift */; };
+		E56A7F802D79E7250043475A /* AddMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A7F7E2D79E7250043475A /* AddMemberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,7 @@
 		E51D07822D79DBA4001F8C5D /* TeamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
 		E51D078A2D79E468001F8C5D /* MemberDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailView.swift; sourceTree = "<group>"; };
 		E51D078B2D79E468001F8C5D /* MemberDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberDetailViewController.swift; sourceTree = "<group>"; };
-		E56A7F7E2D79E7250043475A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E56A7F7E2D79E7250043475A /* AddMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemberViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,7 @@
 		E56A7F7C2D79E5C60043475A /* MemberView */ = {
 			isa = PBXGroup;
 			children = (
-				E56A7F7E2D79E7250043475A /* ProfileViewController.swift */,
+				E56A7F7E2D79E7250043475A /* AddMemberViewController.swift */,
 				E51D078B2D79E468001F8C5D /* MemberDetailViewController.swift */,
 				E51D078A2D79E468001F8C5D /* MemberDetailView.swift */,
 			);
@@ -304,7 +304,7 @@
 				E51D078C2D79E468001F8C5D /* MemberDetailView.swift in Sources */,
 				E51D078D2D79E468001F8C5D /* MemberDetailViewController.swift in Sources */,
 				E51D076D2D79D3DA001F8C5D /* SceneDelegate.swift in Sources */,
-				E56A7F802D79E7250043475A /* ProfileViewController.swift in Sources */,
+				E56A7F802D79E7250043475A /* AddMemberViewController.swift in Sources */,
 				E51D076E2D79D3DA001F8C5D /* TeamData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
