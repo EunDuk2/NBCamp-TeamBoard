@@ -10,7 +10,15 @@ import PinLayout
 import FlexLayout
 import CoreData
 
+protocol EditMemberDelegate: AnyObject {
+    func editMember()
+}
+
 class AddMemberViewController: UIViewController {
+    
+    weak var delegate: EditMemberDelegate?
+    
+    var memberEntity: MemberEntity?
     
     private let scrollView = UIScrollView()
     private let rootFlexContainer = UIView()
@@ -67,10 +75,29 @@ class AddMemberViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        navigationItem.title = "프로필 추가"
-        
-        let completeButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(completeButtonClicked))
-        navigationItem.rightBarButtonItem = completeButton
+        if let memberEntity = memberEntity {
+            navigationItem.title = "멤버 수정"
+            // 완료 버튼 추가
+            let completeButton = UIBarButtonItem(title: "수정", style: .done, target: self, action: #selector(completeButtonClicked))
+            navigationItem.rightBarButtonItem = completeButton
+            
+            profileImage.image = UIImage(data: memberEntity.image ?? Data())
+            nameTextField.text = memberEntity.name
+            roleTextField.text = memberEntity.role
+            mbtiTextField.text = memberEntity.mbti
+            hobbyTextField.text = memberEntity.hobby
+            githubLinkTextField.text = memberEntity.githubLink
+//            notionLinkTextField.text = memberEntity.notionLink  <-- memberEntity 수정이 안됩니다
+            introductionTextView.text = memberEntity.introduction
+            
+        } else {
+            navigationItem.title = "멤버 추가"
+            // 완료 버튼 추가
+            let completeButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(completeButtonClicked))
+            navigationItem.rightBarButtonItem = completeButton
+            
+            profileImage.image = UIImage(systemName: "person.crop.circle.fill")
+        }
         
         view.addSubview(scrollView)
         scrollView.addSubview(rootFlexContainer)
@@ -119,25 +146,6 @@ class AddMemberViewController: UIViewController {
         introductionTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
     
-    // MARK: - CoreData 로직 - CoreDataManager
-//    private func saveMemberProfile() {
-//        let manager = CoreDataManager.shared
-//        let member = MemberEntity(context: manager.context)
-//
-//        member.name = nameTextField.text
-//        member.mbti = mbtiTextField.text
-//        member.hobby = hobbyTextField.text
-//        member.githubLink = githubLinkTextField.text
-//        member.introduction = introductionTextView.text
-//        member.role = "팀원" // 역할은 필요에 따라 수정
-//
-//        if let image = profileImage.image, let imageData = image.pngData() {
-//            member.profileImage = imageData
-//        }
-//
-//        manager.saveContext()
-//    }
-    
     // MARK: - FlexLayout 구성
     private func setupFlexLayout() {
         rootFlexContainer.flex.define { flex in
@@ -179,8 +187,28 @@ class AddMemberViewController: UIViewController {
         addImageButton.addTarget(self, action: #selector(profileButtonClicked), for: .touchUpInside)
     }
     
+    // Navigation rightBarButton Action
     @objc private func completeButtonClicked() {
-        // 완료버튼 Action
+        let image = profileImage.image?.pngData()
+        let name = nameTextField.text ?? ""
+        let mbti = mbtiTextField.text ?? ""
+        let hobby = hobbyTextField.text ?? ""
+        let githubLink = githubLinkTextField.text ?? ""
+        let notionLink = notionLinkTextField.text ?? ""
+        let introduction = introductionTextView.text ?? ""
+        let role = "팀원" // 역할은 필요에 따라 수정
+        
+        // MARK: - CoreData
+        if let member = memberEntity {
+            delegate?.editMember()
+            
+            // TODO: Notion 링크 추가 필요
+            CoreDataManager.shared.editMember(member: member, image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
+        } else {
+            CoreDataManager.shared.addMember(image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
+        }
+        
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc private func profileButtonClicked() {
