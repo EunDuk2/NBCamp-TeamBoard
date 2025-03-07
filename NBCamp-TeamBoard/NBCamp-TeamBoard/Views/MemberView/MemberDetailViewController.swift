@@ -8,13 +8,16 @@
 import UIKit
 import PinLayout
 import FlexLayout
+import CoreData
 
 final class MemberDetailViewController: UIViewController {
+    
+    var memberEntity: MemberEntity?
     
     private var labels: [(UILabel, CGFloat)] = []
     private var timer: Timer?
     
-    private lazy var memberDetailView: MemberDetailView = {
+    private let memberDetailView: MemberDetailView = {
         return MemberDetailView()
     }()
 
@@ -34,8 +37,13 @@ final class MemberDetailViewController: UIViewController {
     
     private func configureUI(){
         view.backgroundColor = .systemBackground
-        
         view.addSubview(memberDetailView)
+        
+        
+        guard let memberEntity = memberEntity else { return }
+        memberDetailView.profileImageView.image = UIImage(data: memberEntity.image ?? Data())
+        memberDetailView.nameLabel.text = memberEntity.name
+        memberDetailView.introductionText.text = memberEntity.introduction
     }
     
     private func configureLayout(){
@@ -50,8 +58,13 @@ final class MemberDetailViewController: UIViewController {
     }
     
     @objc private func editButtonTapped() {
-        let profileVC = ProfileViewController()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        let editMemberVC = AddMemberViewController()
+        editMemberVC.memberEntity = memberEntity
+        
+        if let mainVC = self.navigationController?.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController {
+            editMemberVC.delegate = mainVC
+        }
+        self.navigationController?.pushViewController(editMemberVC, animated: true)
     }
     
     @objc private func notionButtonTapped() {
@@ -63,8 +76,11 @@ final class MemberDetailViewController: UIViewController {
     }
     
     private func setupLabels() {
-        let items = ["INTP", "영화보기", "음악감상", "운동", "Leader", "MemberMemberMember"] // 임시 데이터
-        let allItems = items + items + items // 3회 반복 후 초기화
+        guard let hobbyString = memberEntity?.hobby else { return }
+        let hobbies = hobbyString.split { $0 == " " || $0 == "," }.map { String($0) }.filter { !$0.isEmpty }
+        print(hobbies)
+
+        let allItems = hobbies + hobbies + hobbies // 3회 반복 후 초기화
         
         allItems.forEach { text in
             let label = UILabel()

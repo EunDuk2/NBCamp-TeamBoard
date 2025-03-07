@@ -24,16 +24,15 @@ final class MemberDetailView: UIView {
     }()
     
     // 프로필 이미지
-    private lazy var profileImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "profile1"))
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.clipsToBounds = true
         return imageView
     }()
     
     // 프로필 이름
-    private lazy var nameLabel: UILabel = {
+    let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "조은성"
         label.font = .systemFont(ofSize: 40, weight: .bold)
         label.numberOfLines = 1
         return label
@@ -47,9 +46,8 @@ final class MemberDetailView: UIView {
         return label
     }()
     
-    private lazy var introductionText: UITextView = {
+    let introductionText: UITextView = {
         let textView = UITextView()
-        textView.text = "잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다.잘 부탁드립니다."
         textView.font = .systemFont(ofSize: 20, weight: .bold)
         textView.backgroundColor = .lightGray
         textView.layer.cornerRadius = 10 // 10pt 만큼 둥글게

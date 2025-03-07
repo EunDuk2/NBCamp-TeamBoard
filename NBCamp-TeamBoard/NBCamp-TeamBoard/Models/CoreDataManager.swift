@@ -97,7 +97,7 @@ final class CoreDataManager {
     func editMember(member: MemberEntity, image: Data?, name: String, mbti: String, hobby: String, githubLink: String, introduction: String, role: String)  {
         
         member.image = image
-        member.name = "박주성"
+        member.name = name
         member.mbti = mbti
         member.hobby = hobby
         member.githubLink = githubLink
@@ -110,7 +110,6 @@ final class CoreDataManager {
     private func saveContext() {
         if context.hasChanges {
             do {
-                print("tnwj")
                 try context.save()
             } catch {
                 print("Context 저장 실패: \(error)")

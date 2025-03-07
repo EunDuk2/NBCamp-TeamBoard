@@ -47,6 +47,7 @@ class MemberCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        rootContainerView.clipsToBounds = true
         rootContainerView.pin.all()
         rootContainerView.flex.layout()
     }
@@ -74,6 +75,7 @@ class MemberCell: UICollectionViewCell {
     }
     
     func configure(with member: MemberEntity) {
+        imageView.image = UIImage(data: member.image ?? Data())
         nameLabel.text = member.name
         roleLabel.text = member.role
     }

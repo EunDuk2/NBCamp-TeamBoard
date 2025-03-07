@@ -162,7 +162,7 @@ class MainViewController: UIViewController {
         }
         
         viewModel.didSelectAddMember = { [weak self] in
-            let addMemberVC = ProfileViewController()
+            let addMemberVC = AddMemberViewController()
             self?.navigationController?.pushViewController(addMemberVC, animated: true)
         }
         
@@ -173,8 +173,9 @@ class MainViewController: UIViewController {
         }
         
         viewModel.didSelectMember = { [weak self] member in
-            let detailVC = MemberDetailViewController()
-            self?.navigationController?.pushViewController(detailVC, animated: true)
+            let memberDetailVC = MemberDetailViewController()
+            memberDetailVC.memberEntity = member
+            self?.navigationController?.pushViewController(memberDetailVC, animated: true)
 
         }
     }
@@ -272,5 +273,19 @@ extension MainViewController: UICollectionViewDelegate {
         case .addMember:
             viewModel.addMember()
         }
+    }
+}
+
+extension MainViewController: EditTeamDelegate, EditMemberDelegate {
+    func editTeam() {
+        let snapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
+        datasource.apply(snapshot, animatingDifferences: true)
+        print("editTeam")
+    }
+    
+    func editMember() {
+        let snapshot = NSDiffableDataSourceSnapshot<Section, CellItem>()
+        datasource.apply(snapshot, animatingDifferences: true)
+        print("editMember")
     }
 }

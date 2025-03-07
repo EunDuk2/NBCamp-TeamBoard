@@ -50,9 +50,8 @@ class TeamCell: UICollectionViewCell {
     }
     
     func configure(with team: TeamEntity) {
-        guard let data = team.image, let image = UIImage(data: data) else { return }
-        
-        imageView.image = image
         teamNameLabel.text = team.name
+        guard let data = team.image, let image = UIImage(data: data) else { return }
+        imageView.image = image
     }
 }

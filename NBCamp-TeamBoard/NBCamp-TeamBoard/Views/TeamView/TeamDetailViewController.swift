@@ -91,6 +91,10 @@ final class TeamDetailViewController: UIViewController {
     @objc func editBtnTapped() {
         let nextVC = AddTeamViewController()
         nextVC.teamEntity = teamEntity
+        // 내비게이션 스택에서 MainViewController를 찾아 delegate로 할당
+        if let mainVC = self.navigationController?.viewControllers.first(where: { $0 is MainViewController }) as? MainViewController {
+            nextVC.delegate = mainVC
+        }
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
@@ -131,9 +135,9 @@ final class TeamDetailViewController: UIViewController {
     }
     
     private func updateUI() {
-        guard let teamEntity = teamEntity, let data = teamEntity.image else { return }
+        guard let teamEntity = teamEntity else { return }
         
-        teamImage.image = UIImage(data: data)
+        teamImage.image = UIImage(data: teamEntity.image ?? Data())
         teamName.text = teamEntity.name
         teamRules.text = teamEntity.rule
         teamSchedules.text = teamEntity.schedules
