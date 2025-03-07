@@ -87,7 +87,7 @@ class AddMemberViewController: UIViewController {
             mbtiTextField.text = memberEntity.mbti
             hobbyTextField.text = memberEntity.hobby
             githubLinkTextField.text = memberEntity.githubLink
-//            notionLinkTextField.text = memberEntity.notionLink  <-- memberEntity 수정이 안됩니다
+            notionLinkTextField.text = memberEntity.notionLink
             introductionTextView.text = memberEntity.introduction
             
         } else {
@@ -196,16 +196,15 @@ class AddMemberViewController: UIViewController {
         let githubLink = githubLinkTextField.text ?? ""
         let notionLink = notionLinkTextField.text ?? ""
         let introduction = introductionTextView.text ?? ""
-        let role = "팀원" // 역할은 필요에 따라 수정
+        let role = roleTextField.text ?? "" // 역할은 필요에 따라 수정
         
         // MARK: - CoreData
         if let member = memberEntity {
             delegate?.editMember()
             
-            // TODO: Notion 링크 추가 필요
-            CoreDataManager.shared.editMember(member: member, image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
+            CoreDataManager.shared.editMember(member: member, image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role, notionLink: notionLink)
         } else {
-            CoreDataManager.shared.addMember(image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role)
+            CoreDataManager.shared.addMember(image: image, name: name, mbti: mbti, hobby: hobby, githubLink: githubLink, introduction: introduction, role: role, notionLink: notionLink)
         }
         
         self.navigationController?.popToRootViewController(animated: true)
